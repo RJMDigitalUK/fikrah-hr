@@ -1,0 +1,16 @@
+@import "custom";
+@import "custom-sizes";
+@import "fonts";
+@import "wordpress";
+@import "base";
+@import "utilities";
+@import "overrides";
+
+// Note: Component-specific styles have been migrated to inline <style> tags in their respective components:
+// - Hero.js: .hero-section, .hero-content, .hero-background-video, .hero-background-image
+// - EmotionalHookSection.js: .emotional-hook-text .quote
+// - CoachBioSection.js: .coach-bio-image
+// - Testimonial.js: .testimonial-customer-image, .testimonial-section, .testimonial-bg-image
+// - HighlightsSection.js: highlight icon styles
+// - ProgramSummary.js: .program-bullet-points, bullet icon styles
+// - PageBreak.js: .benefits-marquee, .benefit-item, @keyframes scroll-left

@@ -1,0 +1,42 @@
+.alignright img {
+	float: right;
+}
+.alignleft img {
+	float: left;
+}
+.aligncenter img,
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Ensure all WordPress images stay within their containers */
+.aligncenter img,
+.alignleft img,
+.alignright img,
+img[class*="wp-image-"],
+img[class*="size-"],
+.wp-block-image img,
+.blog-inner-content img,
+.blog-inner-content video,
+.blog-inner-content .wp-video,
+.wp-block-image {
+	max-width: 100%;
+	height: auto;
+}
+
+/* Additional safety for any content container */
+.blog-inner-content img,
+.contact-us-description img,
+.content img {
+	max-width: 100% !important;
+	height: auto !important;
+}
+
+.blog-post-content h1,
+.blog-post-content h2,
+.blog-post-content h3 {
+	padding-top: 1.3rem;
+	padding-bottom: 1.1rem;
+}

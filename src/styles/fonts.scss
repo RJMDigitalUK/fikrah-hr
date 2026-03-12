@@ -1,0 +1,25 @@
+// Font families are now dynamically loaded via DynamicTypography component
+// and applied using CSS custom properties.
+// Fallback to system fonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+
+body {
+  font-family: var(--font-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-size: var(--body-font-size, 16px);
+  line-height: var(--line-height, 1.5);
+  letter-spacing: var(--letter-spacing, 0);
+  color: var(--body-text-colour, #000000);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading, var(--font-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif));
+}
+
+h1, h2 {
+  color: var(--heading-text-colour, #000000);
+}
+
+h3, h4, h5, h6,
+[class*="-subheading"] {
+  color: var(--subheading-text-colour, #000000);
+}
+
