@@ -1,0 +1,16 @@
+// Third-party library overrides: Bootstrap, react-multi-carousel, etc.
+
+// Global CSS for Custom Dots (react-multi-carousel)
+.react-multi-carousel-dot-list {
+	justify-content: left !important;
+	position: absolute !important;
+	bottom: 35px !important;
+}
+
+.react-multi-carousel-dot button {
+	width: 8px !important;
+	height: 8px !important;
+	border: none !important;
+	cursor: pointer;
+}
+

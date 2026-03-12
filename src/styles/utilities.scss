@@ -1,0 +1,11 @@
+// Utility classes: Gradients, links, buttons
+
+.btn {
+	border-radius: 0;
+}
+
+.benefits-grid {
+	@media (min-width: 1200px) {
+		margin-top: 130px !important;
+	}
+}
