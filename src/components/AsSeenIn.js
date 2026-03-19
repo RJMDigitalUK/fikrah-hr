@@ -2,6 +2,70 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { SafeHtmlParser } from "./SafeHtmlParser";
+import Link from "./Link";
+
+const LogoImage = ({ logo }) => {
+	const logoImage = getImage(logo?.localFile);
+	const isSvg = logo?.mimeType === "image/svg+xml";
+	const logoSrc = logo?.localFile?.publicURL || logo?.sourceUrl;
+	const logoAlt = logo?.altText || "Company logo";
+
+	if (isSvg && logoSrc) {
+		return (
+			<img
+				src={logoSrc}
+				alt={logoAlt}
+				className="as-seen-in-logo"
+				style={{ maxHeight: "60px", maxWidth: "160px", objectFit: "contain" }}
+			/>
+		);
+	}
+	if (logoImage) {
+		return (
+			<GatsbyImage
+				image={logoImage}
+				alt={logoAlt}
+				className="as-seen-in-logo"
+				imgStyle={{ objectFit: "contain" }}
+				style={{ maxHeight: "60px" }}
+			/>
+		);
+	}
+	if (logoSrc) {
+		return (
+			<img
+				src={logoSrc}
+				alt={logoAlt}
+				className="as-seen-in-logo"
+				style={{ maxHeight: "60px", maxWidth: "160px", objectFit: "contain" }}
+			/>
+		);
+	}
+	return null;
+};
+
+const LogoItem = ({ logoItem }) => {
+	const logoUrl = logoItem.companyUrl?.url;
+	const wrapper = (
+		<div className="as-seen-in-logo-wrapper d-flex justify-content-center align-items-center px-4">
+			<LogoImage logo={logoItem.companyLogo} />
+		</div>
+	);
+
+	if (logoUrl) {
+		return (
+			<Link
+				to={logoUrl}
+				target={logoItem.companyUrl?.target || "_blank"}
+				rel="noopener noreferrer"
+				className="as-seen-in-logo-link d-block"
+			>
+				{wrapper}
+			</Link>
+		);
+	}
+	return wrapper;
+};
 
 const AsSeenIn = ({
 	subheading,
@@ -14,11 +78,46 @@ const AsSeenIn = ({
 	bodyTextColour,
 	customCss
 }) => {
+	const hasLogos = logos && logos.length > 0;
+	const splitIndex = hasLogos ? Math.ceil(logos.length / 2) : 0;
+	const row1 = hasLogos ? logos.slice(0, splitIndex) : [];
+	const row2 = hasLogos ? logos.slice(splitIndex) : [];
+	const rows = [row1, row2].filter((r) => r.length > 0);
+
 	return (
 		<section
 			className="as-seen-in-section py-5 py-lg-7"
 			style={{ backgroundColor: backgroundColour }}
 		>
+			<style>{`
+				.as-seen-in-marquee-track {
+					overflow: hidden;
+					width: 100%;
+				}
+				.as-seen-in-marquee-inner {
+					display: flex;
+					width: max-content;
+					align-items: center;
+				}
+				.as-seen-in-marquee-inner.scroll-left {
+					animation: asisMarqueeLeft 40s linear infinite;
+				}
+				.as-seen-in-marquee-inner.scroll-right {
+					animation: asisMarqueeRight 40s linear infinite;
+				}
+				@keyframes asisMarqueeLeft {
+					0%   { transform: translateX(0); }
+					100% { transform: translateX(-50%); }
+				}
+				@keyframes asisMarqueeRight {
+					0%   { transform: translateX(-50%); }
+					100% { transform: translateX(0); }
+				}
+				.as-seen-in-marquee-track:hover .as-seen-in-marquee-inner {
+					animation-play-state: paused;
+				}
+			`}</style>
+
 			<Container className="as-seen-in-content-container">
 				<Row className="justify-content-center text-center mb-5">
 					<Col xs={12} lg={8}>
@@ -48,64 +147,26 @@ const AsSeenIn = ({
 						)}
 					</Col>
 				</Row>
-
-				{logos && logos.length > 0 && (
-					<Row className="as-seen-in-logos g-4 justify-content-center align-items-center">
-						{logos.map((logoItem, index) => {
-							const logoImage = getImage(logoItem.companyLogo?.localFile);
-							const isSvg = logoItem.companyLogo?.mimeType === "image/svg+xml";
-							const logoSrc = logoItem.companyLogo?.localFile?.publicURL || logoItem.companyLogo?.sourceUrl;
-							const logoUrl = logoItem.companyUrl?.url;
-							const logoAlt = logoItem.companyLogo?.altText || "Company logo";
-
-							const logoElement = (
-								<div className="as-seen-in-logo-wrapper d-flex justify-content-center align-items-center">
-									{isSvg && logoSrc ? (
-										<img
-											src={logoSrc}
-											alt={logoAlt}
-											className="as-seen-in-logo"
-											style={{ maxHeight: "60px", maxWidth: "160px", objectFit: "contain" }}
-										/>
-									) : logoImage ? (
-										<GatsbyImage
-											image={logoImage}
-											alt={logoAlt}
-											className="as-seen-in-logo"
-											imgStyle={{ objectFit: "contain" }}
-											style={{ maxHeight: "60px" }}
-										/>
-									) : logoSrc ? (
-										<img
-											src={logoSrc}
-											alt={logoAlt}
-											className="as-seen-in-logo"
-											style={{ maxHeight: "60px", maxWidth: "160px", objectFit: "contain" }}
-										/>
-									) : null}
-								</div>
-							);
-
-							return (
-								<Col xs={6} sm={4} md={3} lg={2} key={index} className="text-center">
-									{logoUrl ? (
-										<a
-											href={logoUrl}
-											target={logoItem.companyUrl?.target || "_blank"}
-											rel="noopener noreferrer"
-											className="as-seen-in-logo-link d-block"
-										>
-											{logoElement}
-										</a>
-									) : (
-										logoElement
-									)}
-								</Col>
-							);
-						})}
-					</Row>
-				)}
 			</Container>
+
+			{hasLogos && (
+				<div className="as-seen-in-marquee-rows">
+					{rows.map((rowLogos, rowIndex) => {
+						const direction = rowIndex % 2 === 0 ? "scroll-left" : "scroll-right";
+						const duplicated = [...rowLogos, ...rowLogos];
+						return (
+							<div key={rowIndex} className="as-seen-in-marquee-track mb-4">
+								<div className={`as-seen-in-marquee-inner ${direction}`}>
+									{duplicated.map((logoItem, i) => (
+										<LogoItem key={i} logoItem={logoItem} />
+									))}
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			)}
+
 			{customCss && <style>{`${customCss}`}</style>}
 		</section>
 	);
