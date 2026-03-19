@@ -26,6 +26,13 @@ import Testimonial from "../components/Testimonial";
 import ContactForm from "../components/ContactForm";
 import DiscoveryCallBooking from "../components/DiscoveryCallBooking";
 import GoogleReview from "../components/GoogleReview";
+import NewsletterCtaBanner from "../components/NewsletterCtaBanner";
+import CirclesSection from "../components/CirclesSection";
+import CardsSection from "../components/CardsSection";
+import EventSection from "../components/EventSection";
+import TeamSection from "../components/TeamSection";
+import AsSeenIn from "../components/AsSeenIn";
+import PodcastSection from "../components/PodcastSection";
 
 const PageTemplate = ({ data: { wpPage, site } }) => {
 	const siteUrl = site?.siteMetadata?.siteUrl;
@@ -59,6 +66,13 @@ const PageTemplate = ({ data: { wpPage, site } }) => {
 		contactform: (data) => <ContactForm {...data} />,
 		discoverycallbooking: (data) => <DiscoveryCallBooking {...data} />,
 		googlereview: (data) => <GoogleReview {...data} />,
+		newsletterctabanner: (data) => <NewsletterCtaBanner {...data} />,
+		circlessection: (data) => <CirclesSection {...data} />,
+		cardssection: (data) => <CardsSection {...data} />,
+		eventsection: (data) => <EventSection {...data} />,
+		teamsection: (data) => <TeamSection {...data} />,
+		asseenin: (data) => <AsSeenIn {...data} />,
+		podcastsection: (data) => <PodcastSection {...data} />,
 	};
 
 	const breadcrumb = {
@@ -182,7 +196,12 @@ export const query = graphql`
 						subheading
 						heading
 						body
-						cta {
+						primaryCtaButton {
+							title
+							url
+							target
+						}
+						secondaryCtaButton {
 							title
 							url
 							target
@@ -192,8 +211,10 @@ export const query = graphql`
 						subheadingTextColour
 						bodyTextColour
 						textAlignment
-						ctaButtonColour
-						ctaButtonTextColour
+						primaryCtaButtonColour
+						primaryCtaTextColour
+						secondaryCtaButtonColour
+						secondaryCtaTextColour
 						css
 					}
 					... on WpPage_Pagefields_Components_PageBreak {
@@ -208,7 +229,9 @@ export const query = graphql`
 						backgroundImage {
 							altText
 							sourceUrl
+							mimeType
 							localFile {
+								publicURL
 								childImageSharp {
 									gatsbyImageData(
 										formats: [WEBP, AUTO]
@@ -220,20 +243,29 @@ export const query = graphql`
 								}
 							}
 						}
+						subheadingAbove
 						heading
 						description
-						cta {
+						primaryCtaButton {
+							title
+							url
+							target
+						}
+						secondaryCtaButton {
 							title
 							url
 							target
 						}
 						frameFullHeight
 						backgroundColour
+						subheadingAboveColour
 						headingTextColour
 						customCss
 						descriptionTextColour
-						ctaButtonColour
-						ctaButtonTextColour
+						primaryCtaButtonColour
+						primaryCtaTextColour
+						secondaryCtaButtonColour
+						secondaryCtaTextColour
 					}
 					... on WpPage_Pagefields_Components_LeadMagnetBanner1 {
 						backgroundColour
@@ -317,6 +349,8 @@ export const query = graphql`
 					}
 					... on WpPage_Pagefields_Components_HighlightsSection {
 						backgroundColour
+						subheadingAbove
+						subheadingColour
 						heading
 						description
 						highlights {
@@ -339,8 +373,22 @@ export const query = graphql`
 							}
 							heading
 							description
+							ctaText {
+								title
+								url
+								target
+							}
+							headingColour
+							descriptionColour
+							ctaTextColour
+							ctaChevronColour
 						}
-						cta {
+						primaryCtaButton {
+							title
+							url
+							target
+						}
+						secondaryCta {
 							title
 							url
 							target
@@ -348,10 +396,10 @@ export const query = graphql`
 						customCss
 						headingTextColour
 						descriptionTextColour
-						highlightsHeadingTextColour
-						highlightsDescriptionTextColour
-						ctaButtonColour
-						ctaButtonTextColour
+						primaryCtaButtonColour
+						primaryCtaTextColour
+						secondaryCtaTextColour
+						secondaryCtaChevronColour
 					}
 					... on WpPage_Pagefields_Components_CoachBioSection {
 						backgroundColour
@@ -370,13 +418,29 @@ export const query = graphql`
 								}
 							}
 						}
+						subheadingAbove
 						heading
 						customCss
 						subheading
 						description
+						primaryCtaButton {
+							title
+							url
+							target
+						}
+						secondaryCta {
+							title
+							url
+							target
+						}
+						subheadingAboveColour
 						headingColour
 						subheadingColour
 						descriptionTextColour
+						primaryCtaButtonColour
+						primaryCtaTextColour
+						secondaryCtaTextColour
+						secondaryCtaChevronColour
 					}
 					... on WpPage_Pagefields_Components_ProgramSummary {
 						heading
@@ -419,12 +483,36 @@ export const query = graphql`
 					}
 					... on WpPage_Pagefields_Components_EmotionalHookSection {
 						customCss
+						backgroundImage {
+							altText
+							sourceUrl
+							localFile {
+								childImageSharp {
+									gatsbyImageData(
+										formats: [WEBP, AUTO]
+										quality: 100
+										transformOptions: { cropFocus: CENTER, fit: COVER }
+										layout: CONSTRAINED
+										placeholder: BLURRED
+									)
+								}
+							}
+						}
+						subheadingAbove
 						heading
 						subheading
 						description
+						ctaButton {
+							title
+							url
+							target
+						}
+						subheadingAboveColour
 						headingColour
 						subheadingColour
 						descriptionColour
+						ctaButtonColour
+						ctaTextColour
 						backgroundColour
 					}
 					... on WpPage_Pagefields_Components_ProgramStorySection {
@@ -494,6 +582,7 @@ export const query = graphql`
 						subheading
 						heading
 						description
+						iframe
 						contactMethods {
 							icon {
 								altText
@@ -628,6 +717,8 @@ export const query = graphql`
 						ctaButtonTextColour
 					}
 					... on WpPage_Pagefields_Components_FaqSection {
+						heading
+						subheadingDescription
 						subheading
 						description
 						questions {
@@ -637,24 +728,24 @@ export const query = graphql`
 								faqFields {
 									answer
 									question
+									questionTextColour
+									answerTextColour
 								}
 							}
 						}
-						customCss
-						subheading
-						text
-						cta {
+						ctaButton {
 							title
 							url
 							target						
 						}
 						customCss
 						backgroundColour
+						headingColour
 						subheadingColour
+						subheadingDescriptionColour
 						descriptionColour
-						textColour
 						ctaButtonColour
-						ctaButtonTextColour
+						ctaTextColour
 					}
 					... on WpPage_Pagefields_Components_AnswerSection {
 						question
@@ -769,6 +860,304 @@ export const query = graphql`
 						backgroundColour
 						headingTextColour
 						customCss
+					}
+					... on WpPage_Pagefields_Components_NewsletterCtaBanner {
+						backgroundImage {
+							altText
+							sourceUrl
+							localFile {
+								childImageSharp {
+									gatsbyImageData(
+										formats: [WEBP, AUTO]
+										quality: 100
+										transformOptions: { cropFocus: CENTER, fit: COVER }
+										layout: CONSTRAINED
+										placeholder: BLURRED
+									)
+								}
+							}
+						}
+						heading
+						description
+						field1PlaceholderText
+						field2PlaceholderText
+						ctaButton {
+							title
+							url
+							target
+						}
+						disclaimer
+						redirectUrl
+						webhookUrl
+						backgroundColour
+						headingTextColour
+						descriptionTextColour
+						disclaimerTextColour
+						ctaButtonColour
+						ctaTextColour
+						customCss
+					}
+					... on WpPage_Pagefields_Components_CirclesSection {
+						subheading
+						heading
+						image {
+							altText
+							sourceUrl
+							localFile {
+								childImageSharp {
+									gatsbyImageData(
+										formats: [WEBP, AUTO]
+										quality: 100
+										transformOptions: { cropFocus: CENTER, fit: COVER }
+										layout: CONSTRAINED
+										placeholder: BLURRED
+									)
+								}
+							}
+						}
+						service {
+							icon {
+								altText
+								sourceUrl
+								mimeType
+								localFile {
+									publicURL
+									childImageSharp {
+										gatsbyImageData(
+											formats: [WEBP, AUTO]
+											quality: 100
+											transformOptions: { cropFocus: CENTER, fit: COVER }
+											layout: CONSTRAINED
+											placeholder: BLURRED
+										)
+									}
+								}
+							}
+							iconHoverState {
+								altText
+								sourceUrl
+								mimeType
+								localFile {
+									publicURL
+									childImageSharp {
+										gatsbyImageData(
+											formats: [WEBP, AUTO]
+											quality: 100
+											transformOptions: { cropFocus: CENTER, fit: COVER }
+											layout: CONSTRAINED
+											placeholder: BLURRED
+										)
+									}
+								}
+							}
+							heading
+							description
+							hoverColour
+						}
+						primaryCtaButton {
+							title
+							url
+							target
+						}
+						secondaryCtaButton {
+							title
+							url
+							target
+						}
+						backgroundColour
+						subheadingColour
+						headingColour
+						primaryCtaButtonColour
+						primaryCtaTextColour
+						secondaryCtaTextColour
+						secondaryCtaChevronColour
+						customCss
+					}
+					... on WpPage_Pagefields_Components_CardsSection {
+						heading
+						description
+						card {
+							icon {
+								altText
+								sourceUrl
+								mimeType
+								localFile {
+									publicURL
+									childImageSharp {
+										gatsbyImageData(
+											formats: [WEBP, AUTO]
+											quality: 100
+											transformOptions: { cropFocus: CENTER, fit: COVER }
+											layout: CONSTRAINED
+											placeholder: BLURRED
+										)
+									}
+								}
+							}
+							heading
+							description
+							outlineColour
+							headingColour
+							descriptionColour
+							hoverColour
+						}
+						primaryCtaButton {
+							title
+							url
+							target
+						}
+						secondaryCta {
+							title
+							url
+							target
+						}
+						headingColour
+						descriptionColour
+						primaryCtaButtonColour
+						primaryCtaTextColour
+						secondaryCtaTextColour
+						secondaryCtaChevronColour
+						customCss
+					}
+					... on WpPage_Pagefields_Components_EventSection {
+						backgroundImage {
+							altText
+							sourceUrl
+							localFile {
+								childImageSharp {
+									gatsbyImageData(
+										formats: [WEBP, AUTO]
+										quality: 100
+										transformOptions: { cropFocus: CENTER, fit: COVER }
+										layout: CONSTRAINED
+										placeholder: BLURRED
+									)
+								}
+							}
+						}
+						subheading
+						heading
+						description
+						ctaButton {
+							title
+							url
+							target
+						}
+						backgroundColour
+						subheadingColour
+						headingColour
+						descriptionColour
+						ctaButtonColour
+						ctaButtonTextColour
+						customCss
+					}
+					... on WpPage_Pagefields_Components_TeamSection {
+						heading
+						description
+						teamMember {
+							image {
+								altText
+								sourceUrl
+								localFile {
+									childImageSharp {
+										gatsbyImageData(
+											formats: [WEBP, AUTO]
+											quality: 100
+											transformOptions: { cropFocus: CENTER, fit: COVER }
+											layout: CONSTRAINED
+											placeholder: BLURRED
+										)
+									}
+								}
+							}
+							name
+							role
+							bio
+							socials {
+								socialsIcon {
+									altText
+									sourceUrl
+									mimeType
+									localFile {
+										publicURL
+										childImageSharp {
+											gatsbyImageData(
+												formats: [WEBP, AUTO]
+												quality: 100
+												transformOptions: { cropFocus: CENTER, fit: COVER }
+												layout: CONSTRAINED
+												placeholder: BLURRED
+											)
+										}
+									}
+								}
+								socialsIconLink {
+									title
+									url
+									target
+								}
+							}
+							nameTextColour
+							roleTextColour
+							bioTextColour
+						}
+						headingBelow
+						descriptionBelow
+						ctaButton {
+							title
+							url
+							target
+						}
+						backgroundColour
+						headingColour
+						descriptionColour
+						headingBelowColour
+						descriptionBelowColour
+						ctaButtonColour
+						ctaTextColour
+						customCss
+					}
+					... on WpPage_Pagefields_Components_AsSeenIn {
+						subheading
+						heading
+						bodyText
+						logos {
+							companyLogo {
+								altText
+								sourceUrl
+								mimeType
+								localFile {
+									publicURL
+									childImageSharp {
+										gatsbyImageData(
+											formats: [WEBP, AUTO]
+											quality: 100
+											transformOptions: { cropFocus: CENTER, fit: COVER }
+											layout: CONSTRAINED
+											placeholder: BLURRED
+										)
+									}
+								}
+							}
+							companyUrl {
+								title
+								url
+								target
+							}
+						}
+						backgroundColour
+						subheadingColour
+						headingColour
+						bodyTextColour
+						customCss
+					}
+					... on WpPage_Pagefields_Components_PodcastSection {
+						headingColour
+						episodeTitleTextColour
+						dateAndTimeTextColour
+						bodyTextColour
+						playButtonColour
+						playButtonTextColour
 					}
 				}
 			}

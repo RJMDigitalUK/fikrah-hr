@@ -12,14 +12,17 @@ const Hero = ({
 	subheading, 
 	heading, 
 	body, 
-	cta, 
+	primaryCtaButton,
+	secondaryCtaButton,
 	backgroundColour,
 	headingTextColour,
 	subheadingTextColour,
 	bodyTextColour,
 	textAlignment,
-	ctaButtonColour,
-	ctaButtonTextColour,
+	primaryCtaButtonColour,
+	primaryCtaTextColour,
+	secondaryCtaButtonColour,
+	secondaryCtaTextColour,
 	css
 }) => {
 	const videoRef = useRef(null);
@@ -189,19 +192,34 @@ const Hero = ({
 									<SafeHtmlParser htmlContent={body} />
 								</div>
 							)}
-							{cta && cta.title && (
+							{primaryCtaButton && primaryCtaButton.title && (
 								<Button 
-									href={cta.url}
-									target={cta.target || "_self"}
+									href={primaryCtaButton.url}
+									target={primaryCtaButton.target || "_self"}
 									variant="primary"
 									size="lg"
-									className="hero-cta-button btn-primary py-3"
+									className="hero-primary-cta-button btn-primary py-3 me-3"
 									style={{
-										backgroundColor: ctaButtonColour,
-										color: ctaButtonTextColour,
+										backgroundColor: primaryCtaButtonColour,
+										color: primaryCtaTextColour,
 									}}
 								>
-									{cta.title}
+									{primaryCtaButton.title}
+								</Button>
+							)}
+							{secondaryCtaButton && secondaryCtaButton.title && (
+								<Button 
+									href={secondaryCtaButton.url}
+									target={secondaryCtaButton.target || "_self"}
+									variant="outline-primary"
+									size="lg"
+									className="hero-secondary-cta-button py-3"
+									style={{
+										color: secondaryCtaTextColour,
+										borderColor: secondaryCtaButtonColour,
+									}}
+								>
+									{secondaryCtaButton.title}
 								</Button>
 							)}
 						</div>

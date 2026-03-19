@@ -33,7 +33,7 @@ const Footer = () => {
 					ctaButtonHoverColour
 					ctaButtonTextHoverColour
 					customCss
-					copyrightText
+					copyright
 					newsletterText
 					newsletterCta {
 						title
@@ -42,19 +42,19 @@ const Footer = () => {
 					}
 					webhookUrl
 					newsletterDisclaimerText
-					pageLinks {
+					pageLinks1 {
 						link {
 							title
 							url
 						}
 					}
-					leadMagnetLinks {
+					pageLinks2 {
 						link {
 							title
 							url
 						}
 					}
-					socialLinks {
+					iconsLinks {
 						url
 						icon {
 							altText
@@ -79,10 +79,10 @@ const Footer = () => {
 		ctaButtonHoverColour,
 		ctaButtonTextHoverColour,
 		customCss,
-		pageLinks, 
-		leadMagnetLinks, 
-		socialLinks, 
-		copyrightText,
+		pageLinks1, 
+		pageLinks2, 
+		iconsLinks, 
+		copyright,
 		newsletterText,
 		newsletterCta,
 		webhookUrl,
@@ -124,11 +124,11 @@ const Footer = () => {
 		>
 			<Container className="py-5 px-4">
 				{/* Social Icons Row (top) */}
-				{socialLinks && socialLinks.length > 0 && (
+				{iconsLinks && iconsLinks.length > 0 && (
 					<Row className="justify-content-center mb-5">
 						<Col xs={12} className="text-center">
 							<ul className="list-inline mb-0">
-								{socialLinks.map((item, index) => (
+								{iconsLinks.map((item, index) => (
 									<li key={index} className="list-inline-item mx-4 social-icons">
 										<a
 											href={item.url}
@@ -158,10 +158,10 @@ const Footer = () => {
 						<Row>
 							{/* Lead Magnet Links (nested col) */}
 							<Col xs={6} md={12} className="mb-3">
-								{leadMagnetLinks && leadMagnetLinks.length > 0 && (
+								{pageLinks2 && pageLinks2.length > 0 && (
 									<>
 										<ul className="list-unstyled d-md-flex flex-md-row flex-md-wrap align-items-center justify-content-md-center">
-											{leadMagnetLinks.map((item, idx) => (
+											{pageLinks2.map((item, idx) => (
 												<li key={idx} className="mb-2 mb-md-0 me-md-4">
 													<Link
 														to={item.link.url}
@@ -179,10 +179,10 @@ const Footer = () => {
 
 							{/* Page Links (nested col) */}
 							<Col xs={6} md={12} className="mb-5 ">
-								{pageLinks && pageLinks.length > 0 && (
+								{pageLinks1 && pageLinks1.length > 0 && (
 									<>
 										<ul className="list-unstyled list-unstyled d-md-flex flex-md-row flex-md-wrap align-items-center justify-content-md-center">
-											{pageLinks.map((item, idx) => (
+											{pageLinks1.map((item, idx) => (
 												<li key={idx} className="mb-2 mb-md-0 me-md-4 pb-xl-4">
 													<Link
 														to={item.link.url || "/"}
@@ -251,7 +251,7 @@ const Footer = () => {
 				<Row>
 					<Col xs={12} className="text-center">
 						<small style={{ color: textColour }}>
-							{copyrightText}
+							{copyright}
 						</small>
 					</Col>
 				</Row>

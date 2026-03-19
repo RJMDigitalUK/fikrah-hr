@@ -1,17 +1,26 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { SafeHtmlParser } from "./SafeHtmlParser";
+import { Link } from "gatsby";
 
 const CoachBioSection = ({
 	backgroundColour,
 	image,
+	subheadingAbove,
 	heading,
 	subheading,
 	description,
+	primaryCtaButton,
+	secondaryCta,
+	subheadingAboveColour,
 	headingColour,
 	subheadingColour,
 	descriptionTextColour,
+	primaryCtaButtonColour,
+	primaryCtaTextColour,
+	secondaryCtaTextColour,
+	secondaryCtaChevronColour,
 	customCss
 }) => {
 	const bioImage = getImage(image?.localFile);
@@ -34,6 +43,14 @@ const CoachBioSection = ({
 					</Col>
 					<Col xs={12} md={12} xl={6}>
 						<div className="mx-auto mx-md-5 mx-lg-6 mx-xl-0 mt-4 mt-xl-0">
+							{subheadingAbove && (
+								<p
+									className="coach-bio-subheading-above mb-2"
+									style={{ color: subheadingAboveColour }}
+								>
+									{subheadingAbove}
+								</p>
+							)}
                             {heading && (
 								<h2 
 									className="coach-bio-heading"
@@ -54,6 +71,41 @@ const CoachBioSection = ({
 							{description && (
 								<div className="coach-bio-description" style={{ color: descriptionTextColour }}>
 									<SafeHtmlParser className="coach-bio-description-html" htmlContent={description} />
+								</div>
+							)}
+
+							{primaryCtaButton && primaryCtaButton.url && (
+								<div className="coach-bio-cta-container mt-4 d-flex align-items-center flex-wrap gap-3">
+									<Button
+										as={primaryCtaButton.url.startsWith('/') ? Link : 'a'}
+										to={primaryCtaButton.url.startsWith('/') ? primaryCtaButton.url : undefined}
+										href={!primaryCtaButton.url.startsWith('/') ? primaryCtaButton.url : undefined}
+										target={primaryCtaButton.target || '_self'}
+										variant="primary"
+										className="coach-bio-primary-cta-button btn-primary py-3 px-3"
+										style={{
+											...(primaryCtaButtonColour && { backgroundColor: primaryCtaButtonColour, borderColor: primaryCtaButtonColour }),
+											...(primaryCtaTextColour && { color: primaryCtaTextColour })
+										}}
+									>
+										{primaryCtaButton.title}
+									</Button>
+									{secondaryCta && secondaryCta.url && (
+										<Button
+											as={secondaryCta.url.startsWith('/') ? Link : 'a'}
+											to={secondaryCta.url.startsWith('/') ? secondaryCta.url : undefined}
+											href={!secondaryCta.url.startsWith('/') ? secondaryCta.url : undefined}
+											target={secondaryCta.target || '_self'}
+											variant="btn-link"
+											className="coach-bio-secondary-cta-button p-0 text-decoration-none d-inline-flex align-items-center"
+											style={{ color: secondaryCtaTextColour }}
+										>
+											{secondaryCta.title}
+											<svg className="ms-2" width="16" height="16" viewBox="0 0 24 24" fill={secondaryCtaChevronColour || secondaryCtaTextColour}>
+												<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+											</svg>
+										</Button>
+									)}
 								</div>
 							)}
 						</div>

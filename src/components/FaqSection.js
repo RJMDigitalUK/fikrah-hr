@@ -6,14 +6,16 @@ const FaqSection = ({
 	backgroundColour,
 	subheadingColour,
 	descriptionColour,
-	textColour,
-	text,
+	headingColour,
 	questions,
+	heading,
 	subheading,
+	subheadingDescription,
 	description,
-	cta,
+	ctaButton,
+	subheadingDescriptionColour,
 	ctaButtonColour,
-	ctaButtonTextColour,
+	ctaTextColour,
 	ctaButtonHoverColour,
 	ctaButtonTextHoverColour,
 	customCss
@@ -26,10 +28,16 @@ const FaqSection = ({
 			<Container>
 				<Row>
 					<Col xs={12}>
+					{heading && (
+								<h2 className="faq-heading mb-3" style={{ color: headingColour }}>{heading}</h2>
+							)}
 					{description && (
 								<div className="faq-text  mb-5" style={{color: descriptionColour}}>								
 									{description}
 								</div>
+							)}
+					{subheadingDescription && (
+								<p className="faq-subheading-description mb-5" style={{ color: subheadingDescriptionColour }}>{subheadingDescription}</p>
 							)}
                         
 					</Col>
@@ -49,12 +57,12 @@ const FaqSection = ({
 												<Card.Body>
 													<Card.Title 
 										className="pb-3"
-										style={{ color: textColour }}
+										style={{ color: faq.faqFields?.questionTextColour }}
 									>
 										{faq.faqFields?.question}
 									</Card.Title>
 													{faq.faqFields?.answer && (
-														<div className="faq-answer preview mt-2">
+														<div className="faq-answer preview mt-2" style={{ color: faq.faqFields?.answerTextColour }}>
 															<SafeHtmlParser htmlContent={faq.faqFields?.answer} />
 														</div>
 													)}
@@ -68,29 +76,24 @@ const FaqSection = ({
 					</Row>
 				)}
 				
-				{cta && cta.title && (
+				{ctaButton && ctaButton.title && (
 					<Row>
 						<Col xs={12} className="text-center text-xl-start">
 						<div className="faq-header text-xl-start">
 							{subheading && (
-								<h3 className="faq-heading" style={{ color: subheadingColour }}>{subheading}</h3>
-							)}
-							{text && (
-						<div style={{ color: textColour }} className="faq-subheading">
-							<p>{text}</p>
-						</div>
+								<h3 className="faq-subheading" style={{ color: subheadingColour }}>{subheading}</h3>
 							)}
 						</div>
 							<Button 
 								className="faq-cta-button px-3 py-3 mt-4 w-100 w-md-auto"
-								href={cta.url}
-								target={cta.target || "_self"}
+								href={ctaButton.url}
+								target={ctaButton.target || "_self"}
 								style={{
 									...(ctaButtonColour && { backgroundColor: ctaButtonColour, borderColor: ctaButtonColour }),
-									...(ctaButtonTextColour && { color: ctaButtonTextColour })
+									...(ctaTextColour && { color: ctaTextColour })
 								}}
 							>
-								{cta.title}
+								{ctaButton.title}
 							</Button>
 						</Col>
 					</Row>

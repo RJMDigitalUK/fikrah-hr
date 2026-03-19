@@ -17,6 +17,7 @@ const ContactUs = ({
 	description,
 	contactMethods,
 	cta,
+	iframe,
 	customCss,
 	ctaTextColour
 }) => {
@@ -129,6 +130,12 @@ const ContactUs = ({
 										</svg>
 									</Button>
 								</div>
+							)}
+							{iframe && (
+								<div
+									className="contact-us-iframe-container mt-4"
+									dangerouslySetInnerHTML={{ __html: iframe }}
+								/>
 							)}
 						</div>
 					</Col>

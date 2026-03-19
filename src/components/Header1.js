@@ -8,18 +8,23 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 const Header1 = ({ 
 	backgroundImage, 
+	subheadingAbove,
 	heading, 
 	description,
-	cta,
+	primaryCtaButton,
+	secondaryCtaButton,
 	frameFullHeight,
 	backgroundColour,
+	subheadingAboveColour,
 	headingTextColour,
 	descriptionTextColour,
 	customCss,
-	ctaButtonColour,
-	ctaButtonTextColour,
-	ctaButtonHoverColour,
-	ctaButtonTextHoverColour
+	primaryCtaButtonColour,
+	primaryCtaTextColour,
+	primaryCtaButtonHoverColour,
+	primaryCtaTextHoverColour,
+	secondaryCtaButtonColour,
+	secondaryCtaTextColour
 }) => {
 	const renderImage = (img) => {
 		if (!img) return null;
@@ -72,6 +77,11 @@ const Header1 = ({
 				<Row className="w-100">
 					<Col xs={12} className="text-center">
 						<div className="header1-text-container">
+							{subheadingAbove && (
+								<p className="header1-subheading-above mb-2" style={{ color: subheadingAboveColour }}>
+									{subheadingAbove}
+								</p>
+							)}
 							{heading && (
 								<h1 className="header1-heading" style={{ color: headingTextColour }}>
 									{heading}
@@ -85,21 +95,38 @@ const Header1 = ({
 									{description}
 								</p>
 							)}
-							{cta && cta.url && (
+							{primaryCtaButton && primaryCtaButton.url && (
 								<Button 
-									as={cta.url.startsWith('/') ? Link : 'a'}
-									to={cta.url.startsWith('/') ? cta.url : undefined}
-									href={!cta.url.startsWith('/') ? cta.url : undefined}
-									target={cta.target || '_self'}
+									as={primaryCtaButton.url.startsWith('/') ? Link : 'a'}
+									to={primaryCtaButton.url.startsWith('/') ? primaryCtaButton.url : undefined}
+									href={!primaryCtaButton.url.startsWith('/') ? primaryCtaButton.url : undefined}
+									target={primaryCtaButton.target || '_self'}
 									variant="primary"
-								className="header1-cta-button btn-primary py-3 px-3 mt-3"
+								className="header1-primary-cta-button btn-primary py-3 px-3 mt-3 me-3"
 								size="lg"
 								style={{
-									...(ctaButtonColour && { backgroundColor: ctaButtonColour, borderColor: ctaButtonColour }),
-									...(ctaButtonTextColour && { color: ctaButtonTextColour })
+									...(primaryCtaButtonColour && { backgroundColor: primaryCtaButtonColour, borderColor: primaryCtaButtonColour }),
+									...(primaryCtaTextColour && { color: primaryCtaTextColour })
 								}}
 								>
-									{cta.title}
+									{primaryCtaButton.title}
+								</Button>
+							)}
+							{secondaryCtaButton && secondaryCtaButton.url && (
+								<Button 
+									as={secondaryCtaButton.url.startsWith('/') ? Link : 'a'}
+									to={secondaryCtaButton.url.startsWith('/') ? secondaryCtaButton.url : undefined}
+									href={!secondaryCtaButton.url.startsWith('/') ? secondaryCtaButton.url : undefined}
+									target={secondaryCtaButton.target || '_self'}
+									variant="outline-primary"
+									className="header1-secondary-cta-button py-3 px-3 mt-3"
+									size="lg"
+									style={{
+										...(secondaryCtaButtonColour && { borderColor: secondaryCtaButtonColour }),
+										...(secondaryCtaTextColour && { color: secondaryCtaTextColour })
+									}}
+								>
+									{secondaryCtaButton.title}
 								</Button>
 							)}
 						</div>
@@ -107,10 +134,10 @@ const Header1 = ({
 				</Row>
 			</Container>
 			<style>{`
-				.header1-cta-button:hover {
-					background-color: ${ctaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
-					border-color: ${ctaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
-					color: ${ctaButtonTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
+				.header1-primary-cta-button:hover {
+					background-color: ${primaryCtaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
+					border-color: ${primaryCtaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
+					color: ${primaryCtaTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
 				}
 			`}</style>
 			{customCss && (

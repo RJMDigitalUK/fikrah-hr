@@ -1,23 +1,57 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { SafeHtmlParser } from "./SafeHtmlParser";
+import { Link } from "gatsby";
 
 const EmotionalHookSection = ({
+	backgroundImage,
 	heading,
+	subheadingAbove,
 	subheading,
 	description,
+	ctaButton,
 	headingColour,
+	subheadingAboveColour,
 	subheadingColour,
 	descriptionColour,
+	ctaButtonColour,
+	ctaTextColour,
 	customCss,
 	backgroundColour
 }) => {
+	const bgImage = getImage(backgroundImage?.localFile);
+
 	return (
-		<section className="emotionalhook-section py-5" style={{background: backgroundColour}}>
-			<Container className="emotionalhook-content-container">
+		<section className="emotionalhook-section py-5 position-relative" style={{background: backgroundColour}}>
+			{bgImage && (
+				<GatsbyImage
+					image={bgImage}
+					alt={backgroundImage?.altText || "Background"}
+					className="emotionalhook-background-image"
+					style={{
+						position: 'absolute',
+						top: 0,
+						left: 0,
+						width: '100%',
+						height: '100%',
+						zIndex: 0,
+					}}
+					imgStyle={{ objectFit: 'cover' }}
+				/>
+			)}
+			<Container className="emotionalhook-content-container position-relative" style={{ zIndex: 1 }}>
 				<Row className="justify-content-center">
 					<Col xs={12} lg={8}>
 						<div className="emotionalhook-text-container mx-auto" style={{maxWidth: '800px'}}>
+							{subheadingAbove && (
+								<p
+									className="emotionalhook-subheading-above text-center mb-2"
+									style={{ color: subheadingAboveColour }}
+								>
+									{subheadingAbove}
+								</p>
+							)}
 							{heading && (
 								<h2 
 									className="emotionalhook-heading text-center mb-4"
@@ -42,6 +76,25 @@ const EmotionalHookSection = ({
 									style={{ color: descriptionColour }}
 								>
 									<SafeHtmlParser className="emotionalhook-description-html" htmlContent={description} style={{color: descriptionColour}} />
+								</div>
+							)}
+
+							{ctaButton && ctaButton.url && (
+								<div className="emotionalhook-cta-container text-center mt-4">
+									<Button
+										as={ctaButton.url.startsWith('/') ? Link : 'a'}
+										to={ctaButton.url.startsWith('/') ? ctaButton.url : undefined}
+										href={!ctaButton.url.startsWith('/') ? ctaButton.url : undefined}
+										target={ctaButton.target || '_self'}
+										variant="primary"
+										className="emotionalhook-cta-button btn-primary py-3 px-4"
+										style={{
+											...(ctaButtonColour && { backgroundColor: ctaButtonColour, borderColor: ctaButtonColour }),
+											...(ctaTextColour && { color: ctaTextColour })
+										}}
+									>
+										{ctaButton.title}
+									</Button>
 								</div>
 							)}
 						</div>

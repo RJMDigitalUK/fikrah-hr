@@ -4,19 +4,22 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const HighlightsSection = ({
 	backgroundColour,
+	subheadingAbove,
+	subheadingColour,
 	heading,
 	description,
 	highlights,
-	cta,
+	primaryCtaButton,
+	secondaryCta,
 	headingTextColour,
 	descriptionTextColour,
-	highlightsHeadingTextColour,
-	highlightsDescriptionTextColour,
-	customCss,
-	ctaButtonColour,
-	ctaButtonTextColour,
-	ctaButtonHoverColour,
-	ctaButtonTextHoverColour
+	primaryCtaButtonColour,
+	primaryCtaTextColour,
+	primaryCtaButtonHoverColour,
+	primaryCtaTextHoverColour,
+	secondaryCtaTextColour,
+	secondaryCtaChevronColour,
+	customCss
 }) => {
 	return (
 		<section 
@@ -27,6 +30,14 @@ const HighlightsSection = ({
 				<Row>
 					<Col xs={12}>
 						<div className="highlights-text-container text-center mb-5">
+							{subheadingAbove && (
+								<p
+									className="highlights-subheading-above mb-2"
+									style={{ color: subheadingColour }}
+								>
+									{subheadingAbove}
+								</p>
+							)}
                             {heading && (
 								<h2 
 									className="highlights-heading mb-0"
@@ -51,7 +62,7 @@ const HighlightsSection = ({
 				{highlights && highlights.length > 0 && (
 					<Row className="g-4 mb-7 justify-content-center">
 						{/* First highlight - centered on tablet/desktop */}
-						{highlights[0] && (
+							{highlights[0] && (
 							<Col 
 								xs={12} 
 								md={12} 
@@ -87,7 +98,7 @@ const HighlightsSection = ({
 									{highlights[0].heading && (
 										<h3 
 											className="highlights-item-heading mb-3"
-											style={{ color: highlightsHeadingTextColour }}
+											style={{ color: highlights[0].headingColour }}
 										>
 											{highlights[0].heading}
 										</h3>
@@ -95,10 +106,20 @@ const HighlightsSection = ({
 									{highlights[0].description && (
 										<p 
 											className="highlights-item-description mb-0"
-											style={{ color: highlightsDescriptionTextColour }}
+											style={{ color: highlights[0].descriptionColour }}
 										>
 											{highlights[0].description}
 										</p>
+									)}
+									{highlights[0].ctaText?.title && (
+										<a href={highlights[0].ctaText.url} target={highlights[0].ctaText.target || '_self'} className="highlights-item-cta-text mt-2 d-inline-flex align-items-center text-decoration-none" style={{ color: highlights[0].ctaTextColour }}>
+											{highlights[0].ctaText.title}
+											{highlights[0].ctaChevronColour && (
+												<svg className="ms-1" width="16" height="16" viewBox="0 0 24 24" fill={highlights[0].ctaChevronColour}>
+													<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+												</svg>
+											)}
+										</a>
 									)}
 								</div>
 							</Col>
@@ -145,7 +166,7 @@ const HighlightsSection = ({
 										{highlight.heading && (
 											<h3 
 												className="highlights-item-heading mb-3"
-												style={{ color: highlightsHeadingTextColour }}
+												style={{ color: highlight.headingColour }}
 											>
 												{highlight.heading}
 											</h3>
@@ -153,10 +174,20 @@ const HighlightsSection = ({
 										{highlight.description && (
 										<p 
 											className="highlights-item-description mb-0"
-											style={{ color: highlightsDescriptionTextColour }}
+											style={{ color: highlight.descriptionColour }}
 										>
 											{highlight.description}
 										</p>
+										)}
+										{highlight.ctaText?.title && (
+											<a href={highlight.ctaText.url} target={highlight.ctaText.target || '_self'} className="highlights-item-cta-text mt-2 d-inline-flex align-items-center text-decoration-none" style={{ color: highlight.ctaTextColour }}>
+												{highlight.ctaText.title}
+												{highlight.ctaChevronColour && (
+													<svg className="ms-1" width="16" height="16" viewBox="0 0 24 24" fill={highlight.ctaChevronColour}>
+														<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+													</svg>
+												)}
+											</a>
 										)}
 									</div>
 								</Col>
@@ -165,31 +196,44 @@ const HighlightsSection = ({
 					</Row>
 				)}
 				
-				{cta && cta.title && (
+				{primaryCtaButton && primaryCtaButton.title && (
 					<Row>
 						<Col xs={12} className="text-center">
 							<Button 
-								className="highlights-cta-button btn-primary px-3 py-3"
+								className="highlights-primary-cta-button btn-primary px-3 py-3 me-3"
 								style={{
-									...(ctaButtonColour && { backgroundColor: ctaButtonColour, borderColor: ctaButtonColour }),
-									...(ctaButtonTextColour && { color: ctaButtonTextColour })
+									...(primaryCtaButtonColour && { backgroundColor: primaryCtaButtonColour, borderColor: primaryCtaButtonColour }),
+									...(primaryCtaTextColour && { color: primaryCtaTextColour })
 								}}
-								href={cta.url}
-								target={cta.target || "_self"}
-								
+								href={primaryCtaButton.url}
+								target={primaryCtaButton.target || "_self"}
 							>
-								{cta.title}
+								{primaryCtaButton.title}
 							</Button>
+							{secondaryCta && secondaryCta.title && (
+								<Button
+									variant="btn-link"
+									className="highlights-secondary-cta-button p-0 text-decoration-none d-inline-flex align-items-center ms-3"
+									href={secondaryCta.url}
+									target={secondaryCta.target || "_self"}
+									style={{ color: secondaryCtaTextColour }}
+								>
+									{secondaryCta.title}
+									<svg className="ms-1" width="16" height="16" viewBox="0 0 24 24" fill={secondaryCtaChevronColour || secondaryCtaTextColour}>
+										<path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/>
+									</svg>
+								</Button>
+							)}
 						</Col>
 					</Row>
 				)}
 			</Container>
 			
 			<style>{`
-				 .highlights-cta-button:hover {
-        background-color: ${ctaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
-        border-color: ${ctaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
-        color: ${ctaButtonTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
+				 .highlights-primary-cta-button:hover {
+        background-color: ${primaryCtaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
+        border-color: ${primaryCtaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
+        color: ${primaryCtaTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
     }
 				
 				.highlight-svg-icon,
