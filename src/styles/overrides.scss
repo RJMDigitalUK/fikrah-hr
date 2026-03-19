@@ -39,3 +39,38 @@
 	cursor: pointer;
 }
 
+// Heading Typography Scale — mobile first
+h1 { font-size: 44px; }
+h2 { font-size: 34px; }
+h3 { font-size: 36px; }
+h4 { font-size: 30px; }
+[class*="-subheading"] { font-size: 16px; }
+
+// One-off overrides
+.hero-heading    { font-size: 48px; }
+.cta-banner-heading { font-size: 40px; }
+
+// Tablet (768px+)
+@media (min-width: 768px) {
+	h1 { font-size: 52px; }
+	h2 { font-size: 40px; }
+	h3 { font-size: 40px; }
+	h4 { font-size: 36px; }
+	[class*="-subheading"] { font-size: 16px; }
+
+	.hero-heading       { font-size: 64px; }
+	.cta-banner-heading { font-size: 44px; }
+}
+
+// Desktop (992px+)
+@media (min-width: 992px) {
+	h1 { font-size: 72px; }
+	h2 { font-size: 52px; }
+	h3 { font-size: 48px; }
+	h4 { font-size: 44px; }
+	[class*="-subheading"] { font-size: 18px; }
+
+	.hero-heading       { font-size: 80px; }
+	.cta-banner-heading { font-size: 58px; }
+}
+

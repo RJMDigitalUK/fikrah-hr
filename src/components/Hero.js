@@ -176,7 +176,7 @@ const Hero = ({
 					<Col 
 						xs={12} 
 						md={8} 
-						lg={5}
+						lg={6}
 					>
 						<div className={`hero-content-container ${getTextAlignmentClass()}`}>
 							{subheading && (
