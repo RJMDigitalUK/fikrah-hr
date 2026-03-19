@@ -42,11 +42,11 @@ const EmotionalHookSection = ({
 			)}
 			<Container className="emotionalhook-content-container position-relative" style={{ zIndex: 1 }}>
 				<Row className="justify-content-center">
-					<Col xs={12} lg={8}>
-						<div className="emotionalhook-text-container mx-auto" style={{maxWidth: '800px'}}>
+					<Col xs={12} lg={9}>
+						<div className="emotionalhook-text-container mx-auto" style={{maxWidth: '1000px'}}>
 							{subheadingAbove && (
 								<p
-									className="emotionalhook-subheading-above text-center mb-2"
+									className="emotionalhook-subheading-above text-start mb-2"
 									style={{ color: subheadingAboveColour }}
 								>
 									{subheadingAbove}
@@ -54,7 +54,7 @@ const EmotionalHookSection = ({
 							)}
 							{heading && (
 								<h2 
-									className="emotionalhook-heading text-center mb-4"
+									className="emotionalhook-heading text-start mb-4"
 									style={{ color: headingColour }}
 								>
 									{heading}
@@ -63,7 +63,7 @@ const EmotionalHookSection = ({
                             
                             {subheading && (
 								<p 
-									className="emotionalhook-subheading text-center" 
+									className="emotionalhook-subheading text-start" 
 									style={{color: subheadingColour}}
 								>
 									{subheading}

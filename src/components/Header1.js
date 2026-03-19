@@ -41,7 +41,7 @@ const Header1 = ({
 
 	return (
 		<section
-			className={`header1-section position-relative d-flex flex-column ${frameFullHeight ? 'vh-50' : ''}`}
+			className={`header1-section position-relative d-flex flex-column py-lg-9 py-6 ${frameFullHeight ? 'vh-50' : ''}`}
 			style={{
 				background: backgroundColour,
 				minHeight: frameFullHeight ? '50vh' : '35vh'
@@ -73,9 +73,9 @@ const Header1 = ({
 				);
 			})()}
 			
-			<Container className="header1-content-container flex-fill d-flex align-items-center justify-content-center" style={{ zIndex: 2 }}>
+			<Container className="header1-content-container flex-fill d-flex align-items-center justify-content-start" style={{ zIndex: 2 }}>
 				<Row className="w-100">
-					<Col xs={12} className="text-center">
+					<Col xs={12} md={9} lg={8} className="text-start">
 						<div className="header1-text-container">
 							{subheadingAbove && (
 								<p className="header1-subheading-above mb-2" style={{ color: subheadingAboveColour }}>
@@ -138,6 +138,24 @@ const Header1 = ({
 					background-color: ${primaryCtaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
 					border-color: ${primaryCtaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
 					color: ${primaryCtaTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
+				}
+
+				@media (max-width: 575.98px) {
+					.header1-section [data-gatsby-image-wrapper] img {
+						object-position: left center !important;
+					}
+				}
+
+				@media (min-width: 576px) and (max-width: 767.98px) {
+					.header1-section [data-gatsby-image-wrapper] img {
+						object-position: left center !important;
+					}
+				}
+
+				@media (min-width: 768px) and (max-width: 991.98px) {
+					.header1-section [data-gatsby-image-wrapper] img {
+						object-position: right center !important;
+					}
 				}
 			`}</style>
 			{customCss && (
