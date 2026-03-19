@@ -269,6 +269,7 @@ export const query = graphql`
 					}
 					... on WpPage_Pagefields_Components_LeadMagnetBanner1 {
 						backgroundColour
+						sectionLayout
 						image {
 							altText
 							sourceUrl
@@ -326,6 +327,23 @@ export const query = graphql`
 						ctaButtonTextColour
 					}
 					... on WpPage_Pagefields_Components_CtaBanner {
+						backgroundImage {
+							altText
+							sourceUrl
+							mimeType
+							localFile {
+								publicURL
+								childImageSharp {
+									gatsbyImageData(
+										formats: [WEBP, AUTO]
+										quality: 100
+										transformOptions: { cropFocus: CENTER, fit: COVER }
+										layout: CONSTRAINED
+										placeholder: BLURRED
+									)
+								}
+							}
+						}
 						heading
 						description
 						secondaryCta {

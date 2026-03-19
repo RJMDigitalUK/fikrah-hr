@@ -5,6 +5,7 @@ import { SafeHtmlParser } from "./SafeHtmlParser";
 
 const LeadMagnetBanner1 = ({
 	backgroundColour,
+	sectionLayout,
 	image,
 	heading,
 	description,
@@ -69,7 +70,7 @@ const LeadMagnetBanner1 = ({
 		>
 			<Container className="leadmagnet1-content-container">
 				<Row className="align-items-center">
-					<Col xs={12} md={6} className="mb-6 mb-md-0">
+					<Col xs={12} lg={6} className={`mb-6 mb-lg-0 ${sectionLayout ? 'order-lg-1' : 'order-lg-2'}`}>
 						{bannerImage && (
 							<GatsbyImage
 								image={bannerImage}
@@ -78,7 +79,7 @@ const LeadMagnetBanner1 = ({
 							/>
 						)}
 					</Col>
-					<Col xs={12} md={6}>
+					<Col xs={12} lg={6} className={sectionLayout ? 'order-lg-2' : 'order-lg-1'}>
 						<div className="leadmagnet1-text-container lead-magnet-content">
 							{heading && (
 								<h3 className="leadmagnet1-heading text-center pb-3" style={{color: headingTextColour}}>{heading}</h3>
@@ -122,7 +123,7 @@ const LeadMagnetBanner1 = ({
 											type="submit" 
 											className="btn-primary leadmagnet1-cta-button py-3 px-3 w-100"
 											disabled={isSubmitting}
-											style={{color: ctaButtonTextColour, background: ctaButtonColour}}
+											style={{color: ctaButtonTextColour, backgroundColor: ctaButtonColour}}
 										>
 											{isSubmitting ? 'Submitting...' : cta.title}
 										</Button>
