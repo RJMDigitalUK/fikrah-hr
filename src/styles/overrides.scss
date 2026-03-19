@@ -40,23 +40,25 @@
 }
 
 // Heading Typography Scale — mobile first
-h1 { font-size: 44px; }
-h2 { font-size: 34px; }
-h3 { font-size: 36px; }
-h4 { font-size: 30px; }
-[class*="-subheading"] { font-size: 16px; }
+// Uses `body` prefix (specificity 0,0,0,2) to beat Bootstrap defaults (0,0,0,1)
+// without !important — component class selectors and customCss still override naturally
+body h1 { font-size: 44px; }
+body h2 { font-size: 34px; }
+body h3 { font-size: 36px; }
+body h4 { font-size: 30px; }
+body [class*="-subheading"] { font-size: 16px; }
 
-// One-off overrides
-.hero-heading    { font-size: 48px; }
+// One-off overrides (class selectors — specificity 0,0,1,0 — already beat body h1)
+.hero-heading       { font-size: 48px; }
 .cta-banner-heading { font-size: 40px; }
 
 // Tablet (768px+)
 @media (min-width: 768px) {
-	h1 { font-size: 52px; }
-	h2 { font-size: 40px; }
-	h3 { font-size: 40px; }
-	h4 { font-size: 36px; }
-	[class*="-subheading"] { font-size: 16px; }
+	body h1 { font-size: 52px; }
+	body h2 { font-size: 40px; }
+	body h3 { font-size: 40px; }
+	body h4 { font-size: 36px; }
+	body [class*="-subheading"] { font-size: 16px; }
 
 	.hero-heading       { font-size: 64px; }
 	.cta-banner-heading { font-size: 44px; }
@@ -64,11 +66,11 @@ h4 { font-size: 30px; }
 
 // Desktop (992px+)
 @media (min-width: 992px) {
-	h1 { font-size: 72px; }
-	h2 { font-size: 52px; }
-	h3 { font-size: 48px; }
-	h4 { font-size: 44px; }
-	[class*="-subheading"] { font-size: 18px; }
+	body h1 { font-size: 72px; }
+	body h2 { font-size: 52px; }
+	body h3 { font-size: 48px; }
+	body h4 { font-size: 44px; }
+	body [class*="-subheading"] { font-size: 18px; }
 
 	.hero-heading       { font-size: 80px; }
 	.cta-banner-heading { font-size: 58px; }
