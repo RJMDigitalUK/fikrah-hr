@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Carousel } from "react-bootstrap";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
@@ -11,6 +11,7 @@ const Testimonial = ({
 	customCss
 }) => {
 	const bgImage = getImage(backgroundImage?.localFile);
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	return (
 		<section 
@@ -33,7 +34,7 @@ const Testimonial = ({
 				<Row className="justify-content-center">
 					<Col xs={12} md={8}>
 						{customers && customers.length > 0 && (
-							<Carousel className="testimonial-carousel" indicators={false}>
+							<Carousel className="testimonial-carousel" indicators={false} activeIndex={activeIndex} onSelect={setActiveIndex}>
 								{customers.map((customer, index) => {
 									const customerImage = getImage(customer.testimonialFields?.profilePicture?.localFile);
 									return (
@@ -48,7 +49,7 @@ const Testimonial = ({
 												)}
 												{customer.testimonialFields?.review && (
 													<p
-														className="testimonial-review px-7 px-xl-9 pt-4"
+														className="testimonial-review px-0 px-xl-9 pt-4"
 														style={{ color: quoteTextColour }}
 													>
 														{customer.testimonialFields.review}
@@ -58,7 +59,7 @@ const Testimonial = ({
 													{customer.testimonialFields?.name && (
 														<p 
 															className="testimonial-name"
-															style={{ color: nameTextColour }}
+															style={{ color: nameTextColour, fontFamily: "'AmpleSoftPro', sans-serif", fontWeight: 700 }}
 														>
 															{customer.testimonialFields.name}
 														</p>
@@ -75,6 +76,21 @@ const Testimonial = ({
 			</Container>
 			
 			<style>{`
+				.testimonial-indicator-dot {
+					width: 10px;
+					height: 10px;
+					border-radius: 50%;
+					border: none;
+					padding: 0;
+					cursor: pointer;
+					background-color: #7CB6E4;
+					transition: background-color 0.2s ease;
+					min-width: unset !important;
+				}
+				.testimonial-indicator-dot.active {
+					background-color: #E83166;
+				}
+
 				.testimonial-customer-image {
 					border-radius: 50%;
 					width: 80px;

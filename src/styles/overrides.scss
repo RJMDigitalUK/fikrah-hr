@@ -1,5 +1,30 @@
 // Third-party library overrides: Bootstrap, react-multi-carousel, etc.
 
+.btn-primary {
+	border-radius: 100px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+	background-color: #292D65 !important;
+	border-color: #292D65 !important;
+	color: #ffffff !important;
+}
+
+.btn {
+	font-size: 16px !important;
+	padding-left: 32px !important;
+	padding-right: 32px !important;
+}
+
+@media (max-width: 767.98px) {
+	.btn {
+		min-width: 100% !important;
+	}
+}
+
 // Global CSS for Custom Dots (react-multi-carousel)
 .react-multi-carousel-dot-list {
 	justify-content: left !important;

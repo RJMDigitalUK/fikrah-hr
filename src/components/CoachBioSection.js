@@ -32,17 +32,9 @@ const CoachBioSection = ({
 		>
 			<Container>
 				<Row className="align-items-center">
-					<Col xs={12} md={12} xl={6}>
-						{bioImage && (
-							<GatsbyImage
-								image={bioImage}
-								alt={image?.altText || "Coach bio"}
-								className="coach-bio-image w-100 h-100 mb-4 pb-lg-4 mb-xl-0"
-							/>
-						)}
-					</Col>
-					<Col xs={12} md={12} xl={6}>
-						<div className="mx-auto mx-md-5 mx-lg-6 mx-xl-0 mt-4 mt-xl-0">
+					
+					<Col xs={12} md={12} lg={9} xl={7} className="pe-xl-7 order-2 order-lg-1">
+						<div className="mx-auto mx-md-5 mx-xl-6 mx-xl-0 mt-4 mt-xl-0">
 							{subheadingAbove && (
 								<p
 									className="coach-bio-subheading-above mb-2"
@@ -75,7 +67,7 @@ const CoachBioSection = ({
 							)}
 
 							{primaryCtaButton && primaryCtaButton.url && (
-								<div className="coach-bio-cta-container mt-4 d-flex align-items-center flex-wrap gap-3">
+								<div className="coach-bio-cta-container mt-4 d-flex align-items-center flex-wrap gap-3 justify-content-center justify-content-xl-start">
 									<Button
 										as={primaryCtaButton.url.startsWith('/') ? Link : 'a'}
 										to={primaryCtaButton.url.startsWith('/') ? primaryCtaButton.url : undefined}
@@ -97,7 +89,7 @@ const CoachBioSection = ({
 											href={!secondaryCta.url.startsWith('/') ? secondaryCta.url : undefined}
 											target={secondaryCta.target || '_self'}
 											variant="btn-link"
-											className="coach-bio-secondary-cta-button p-0 text-decoration-none d-inline-flex align-items-center"
+											className="coach-bio-secondary-cta-button p-0 text-decoration-none d-inline-flex align-items-center justify-content-center"
 											style={{ color: secondaryCtaTextColour }}
 										>
 											{secondaryCta.title}
@@ -109,6 +101,15 @@ const CoachBioSection = ({
 								</div>
 							)}
 						</div>
+					</Col>
+					<Col xs={12} md={12} lg={3} xl={5} className="order-1 order-lg-2 px-md-9 py-md-3 px-lg-0 py-lg-0">
+						{bioImage && (
+							<GatsbyImage
+								image={bioImage}
+								alt={image?.altText || "Coach bio"}
+								className="coach-bio-image w-100 h-100 mb-4 pb-lg-4 mb-xl-0"
+							/>
+						)}
 					</Col>
 				</Row>
 			</Container>

@@ -1,25 +1,49 @@
-// Font families are now dynamically loaded via DynamicTypography component
-// and applied using CSS custom properties.
-// Fallback to system fonts: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+@font-face {
+  font-family: 'AmpleSoftPro';
+  src: url('../fonts/AmpleSoftPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AmpleSoftPro';
+  src: url('../fonts/AmpleSoftPro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'AmpleSoftPro';
+  src: url('../fonts/AmpleSoftPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 body {
-  font-family: var(--font-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  font-family: 'AmpleSoftPro', sans-serif;
+  font-weight: 400;
   font-size: var(--body-font-size, 16px);
   line-height: var(--line-height, 1.5);
   letter-spacing: var(--letter-spacing, 0);
-  color: var(--body-text-colour, #000000);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading, var(--font-primary, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif));
+  font-family: 'AmpleSoftPro', sans-serif;
+  font-weight: 700;
 }
 
-h1, h2 {
-  color: var(--heading-text-colour, #000000);
-}
-
-h3, h4, h5, h6,
 [class*="-subheading"] {
-  color: var(--subheading-text-colour, #000000);
+  font-family: 'AmpleSoftPro', sans-serif;
+  font-weight: 700;
+}
+
+.btn,
+button,
+a {
+  font-family: 'AmpleSoftPro', sans-serif;
+  font-weight: 700;
 }
 

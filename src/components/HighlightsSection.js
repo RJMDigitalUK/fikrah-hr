@@ -23,7 +23,7 @@ const HighlightsSection = ({
 }) => {
 	return (
 		<section 
-			className="highlights-section py-7"
+			className="highlights-section py-5 py-lg-5"
 			style={{ backgroundColor: backgroundColour }}
 		>
 			<Container className="highlights-content-container">

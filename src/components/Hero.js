@@ -27,7 +27,18 @@ const Hero = ({
 }) => {
 	const videoRef = useRef(null);
 	const [posterUrl, setPosterUrl] = useState(null);
-	
+	const [navbarHeight, setNavbarHeight] = useState(0);
+
+	useEffect(() => {
+		const updateNavbarHeight = () => {
+			const navbar = document.getElementById('navbar-test');
+			if (navbar) setNavbarHeight(navbar.offsetHeight);
+		};
+		updateNavbarHeight();
+		window.addEventListener('resize', updateNavbarHeight);
+		return () => window.removeEventListener('resize', updateNavbarHeight);
+	}, []);
+
 	// Map textAlignment to Bootstrap classes
 	const getTextAlignmentClass = () => {
 		const alignment = textAlignment;
@@ -95,7 +106,7 @@ const Hero = ({
 	return (
 		<section 
 			className="hero-section d-flex align-items-center position-relative"
-			style={{ backgroundColor: backgroundColour }}
+			style={{ backgroundColor: backgroundColour, minHeight: navbarHeight > 0 ? `calc(100vh - ${navbarHeight}px)` : '100vh' }}
 		>
 			{/* Background Video */}
 			{isVideo && videoUrl && (
@@ -197,11 +208,12 @@ const Hero = ({
 									href={primaryCtaButton.url}
 									target={primaryCtaButton.target || "_self"}
 									variant="primary"
-									size="lg"
-									className="hero-primary-cta-button btn-primary py-3 me-3"
+									
+									className="hero-primary-cta-button btn-primary py-3 me-3 mb-3 mb-md-0"
 									style={{
 										backgroundColor: primaryCtaButtonColour,
 										color: primaryCtaTextColour,
+										borderColor: primaryCtaButtonColour,
 									}}
 								>
 									{primaryCtaButton.title}
@@ -212,11 +224,13 @@ const Hero = ({
 									href={secondaryCtaButton.url}
 									target={secondaryCtaButton.target || "_self"}
 									variant="outline-primary"
-									size="lg"
-									className="hero-secondary-cta-button py-3"
+									
+									className="hero-secondary-cta-button py-3 "
 									style={{
 										color: secondaryCtaTextColour,
+										backgroundColor: secondaryCtaButtonColour,
 										borderColor: secondaryCtaButtonColour,
+										borderRadius: '100px',
 									}}
 								>
 									{secondaryCtaButton.title}
@@ -230,7 +244,6 @@ const Hero = ({
 			<style>{`
 			.hero-section {
 					position: relative;
-					min-height: 80vh;
 				}
 				
 				.hero-section::before {
@@ -281,14 +294,7 @@ const Hero = ({
 					padding: 0.75rem 1.5rem;
 				}
 				
-				@media (max-width: 767.98px) {
-					.hero-section {
-						min-height: 55vh;
-					}
 
-						min-height: 80vh;
-					}
-				}
 			`}</style>
 
 			{css && (
