@@ -27,7 +27,7 @@ const TeamSection = ({
 		>
 			<Container className="team-section-content-container">
 				{(heading || description) && (
-					<Row className="justify-content-center text-center mb-5">
+					<Row className="justify-content-start text-start mb-5">
 						<Col xs={12} lg={8}>
 							{heading && (
 								<h2
@@ -55,7 +55,7 @@ const TeamSection = ({
 							const memberImage = getImage(member.image?.localFile);
 
 							return (
-								<Col xs={12} md={6} key={index}>
+								<Col xs={12} xl={6} key={index}>
 									<div className="team-section-member h-100 text-center">
 										{memberImage && (
 											<div className="team-section-member-image-container mb-3">
