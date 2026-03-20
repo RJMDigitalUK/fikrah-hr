@@ -107,16 +107,17 @@ const DiscoveryCallBooking = ({
 								image={iconImage}
 								alt={point.icon?.altText || "Bullet point icon"}
 								className="discoverycall-bullet-icon bullet-point-icon me-3 align-self-center"
+								style={{ width: 12, height: 12 }}
 							/>
 						) : iconSrc ? (
 							<img
 								src={iconSrc}
 								alt={point.icon?.altText || 'Bullet point icon'}
 								className="discoverycall-bullet-icon bullet-point-icon me-3 align-self-center"
-								style={{ width: 32, height: 32, objectFit: 'contain' }}
+								style={{ width: 12, height: 12, objectFit: 'contain' }}
 								/>
 						) : (
-							<div className="discoverycall-bullet-icon bullet-point-icon me-3 align-self-center" style={{ width: 32, height: 32, background: 'rgba(0,0,0,0.03)', borderRadius: 6 }} />
+							<div className="discoverycall-bullet-icon bullet-point-icon me-3 align-self-center" style={{ width: 12, height: 12, background: 'rgba(0,0,0,0.03)', borderRadius: 6 }} />
 						)}
 						<p 
 							className="discoverycall-bullet-text bullet-point-text mb-0 align-self-center"
