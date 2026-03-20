@@ -20,19 +20,19 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
 					</Row>
 
 				{benefits && benefits.length > 0 && (
-					<Row className="pb-5 quiz-benefits-row">
+					<Row className="pb-5 quiz-benefits-row px-md-3">
 						<hr className="mt-2 mb-5 border-3 opacity-100" style={{borderColor: primaryColour}}/>
 						{description && (
-								<p className="text-center  mb-5 px-lg-9 pb-lg-5">{description}</p>
+								<p className="text-center mb-5 px-4 px-lg-9 pb-lg-5">{description}</p>
 							)}
 						{benefits.map((benefit, index) => {
     const icon = getImage(benefit?.icon?.localFile);
     return (
-        <Col xs={12} md={4} key={index}>
+        <Col xs={12} md={4} key={index} className="px-4 px-md-0">
             <div className="position-relative d-flex d-md-block align-items-center py-2 pt-md-5 pb-md-2 px-md-1 mb-3 rounded-start-3 rounded-top-3 h-md-100 w-lg-75 mx-lg-auto" style={{background: secondaryColour, color: secondaryTextColour}}>
                 {icon && (
                     <div 
-                        className="quiz-benefit-icon ms-3 me-3 mx-md-0 d-flex justify-content-center align-items-center"
+                        className="quiz-benefit-icon d-flex justify-content-center align-items-center"
                         style={isDesktop ? {
                             position: 'absolute',
                             top: '0',
@@ -41,7 +41,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
                             margin: 'auto',
                             width: '80px',
                             transform: 'translateY(-50%)'
-                        } : {}}
+                        } : { marginLeft: '0.75rem' }}
                     >
                         <GatsbyImage
                             image={icon}
@@ -56,7 +56,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
                 )}
                 {!icon && benefit?.icon?.sourceUrl && (
                     <div 
-                        className="quiz-benefit-icon ms-3 me-3 mx-md-0 d-flex justify-content-center align-items-center"
+                        className="quiz-benefit-icon  d-flex justify-content-center align-items-center"
                         style={isDesktop ? {
                             position: 'absolute',
                             top: '0',
@@ -67,7 +67,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
                             transform: 'translateY(-50%)',
                             maxWidth: '80px',
                             maxHeight: '80px'
-                        } : { maxWidth: '60px', maxHeight: '60px' }}
+                        } : { maxWidth: '60px', maxHeight: '60px', marginLeft: '0.5rem' }}
                     >
                         <img
                             src={benefit.icon.sourceUrl}
@@ -81,7 +81,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
                     </div>
                 )}
                 {benefit?.benefit && (
-                    <p className="quiz-benefit-text mb-0 ms-3 ms-md-0 px-md-3 py-md-0 mt-md-4 text-md-center" style={{color: secondaryTextColour}}>{benefit.benefit}</p>
+                    <p className="quiz-benefit-text mb-0 ms-3 ms-md-0 px-md-3 py-md-0 mt-md-2 text-md-center" style={{color: secondaryTextColour}}>{benefit.benefit}</p>
                 )}
             </div>
         </Col>
@@ -91,7 +91,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
 				)}
 
 				<Row className="justify-content-center bg-white pb-4 pt-lg-5">
-					<Col xs={12} md={6} className="text-center">
+					<Col xs={12} md={6} className="text-center px-4">
 						{cta && cta.title && (
 							<Button
 								variant="primary"
