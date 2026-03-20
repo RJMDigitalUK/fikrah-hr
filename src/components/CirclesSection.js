@@ -32,8 +32,8 @@ const CirclesSection = ({
 const orbitPositionsForSix = [
 	{ left: "38%", top: "15%" }, // top-left
 	{ left: "62%", top: "15%" }, // top-right
-	{ left: "25%", top: "50%" }, // left
-	{ left: "75%", top: "50%" }, // right
+	{ left: "27%", top: "50%" }, // left
+	{ left: "73%", top: "50%" }, // right
 	{ left: "38%", top: "85%" }, // bottom-left
 	{ left: "62%", top: "85%" }  // bottom-right
 ];
