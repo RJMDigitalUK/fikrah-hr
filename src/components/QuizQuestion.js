@@ -55,35 +55,48 @@ const QuizQuestion = ({
 					</div>
 				);
 
-			case 'scale_0_10':
+			case 'scale_0_10': {
+				const min = question.minValue || 1;
+				const max = question.maxValue || 5;
+				const steps = [];
+				for (let i = min; i <= max; i++) steps.push(i);
 				return (
 					<div>
-						<style>{`
-							.quiz-range-input::-webkit-slider-thumb { background-color: ${secondaryColour} !important; }
-							.quiz-range-input::-moz-range-thumb { background-color: ${secondaryColour} !important; }
-							.quiz-range-input::-webkit-slider-runnable-track { background-color: ${secondaryColour}40 !important; }
-						`}</style>
-						<Form.Group>
-							<Form.Label>
-								Selected value: {answer !== undefined ? answer : question.minValue || 0}
-							</Form.Label>
-							<Form.Range
-								min={question.minValue || 0}
-								max={question.maxValue || 10}
-								step={question.step || 1}
-								value={answer !== undefined ? answer : question.minValue || 0}
-								onChange={(e) => onChange(parseFloat(e.target.value))}
-								className="quiz-range-input"
-							/>
-						</Form.Group>
 						{(question.minLabel || question.maxLabel) && (
-							<div className="d-flex justify-content-between mt-1">
+							<div className="d-flex justify-content-between mb-2">
 								<small className="text-muted" style={{ maxWidth: '45%' }}>{question.minLabel}</small>
 								<small className="text-muted text-end" style={{ maxWidth: '45%' }}>{question.maxLabel}</small>
 							</div>
 						)}
+						<div className="d-flex gap-2">
+							{steps.map((step) => {
+								const isSelected = answer === step;
+								return (
+									<button
+										key={step}
+										type="button"
+										onClick={() => onChange(step)}
+										className="flex-fill py-3 border rounded-3 fw-bold"
+										style={isSelected ? {
+											background: secondaryColour,
+											color: secondaryTextColour,
+											borderColor: secondaryColour,
+											cursor: 'pointer'
+										} : {
+											background: '#ffffff',
+											color: '#6c757d',
+											borderColor: '#dee2e6',
+											cursor: 'pointer'
+										}}
+									>
+										{step}
+									</button>
+								);
+							})}
+						</div>
 					</div>
 				);
+			}
 
 			case 'true_false':
 				return (
