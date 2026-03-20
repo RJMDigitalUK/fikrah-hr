@@ -1,0 +1,1239 @@
+[
+    {
+        "key": "group_68f75050ea443",
+        "title": "Quiz Fields",
+        "fields": [
+            {
+                "key": "field_quiz_type_001",
+                "label": "Quiz Answer Type",
+                "name": "quiz_answer_type",
+                "aria-label": "",
+                "type": "select",
+                "instructions": "Choose a single format for all questions in this quiz.",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "choices": {
+                    "multiple_choice": "Multiple choice",
+                    "scale_0_10": "0–10 rating scale",
+                    "true_false": "True \/ False"
+                },
+                "default_value": "multiple_choice",
+                "allow_null": 0,
+                "multiple": 0,
+                "ui": 1,
+                "return_format": "value",
+                "ajax": 0,
+                "placeholder": "",
+                "show_in_graphql": 1
+            },
+            {
+                "key": "field_tab_intro_001",
+                "label": "Introduction",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_68f75051d7de9",
+                "label": "Title",
+                "name": "title",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_68f75076d7dea",
+                "label": "Description of quiz",
+                "name": "description_of_quiz",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": "",
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_68f7508dd7deb",
+                "label": "CTA",
+                "name": "cta",
+                "aria-label": "",
+                "type": "link",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "return_format": "array",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_68f7509ad7dec",
+                "label": "Benefits of quiz",
+                "name": "benefits_of_quiz",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "layout": "table",
+                "pagination": 0,
+                "min": 0,
+                "max": 0,
+                "collapsed": "",
+                "button_label": "Add Row",
+                "rows_per_page": 20,
+                "sub_fields": [
+                    {
+                        "key": "field_68f750a9d7ded",
+                        "label": "Icon",
+                        "name": "icon",
+                        "aria-label": "",
+                        "type": "image",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "return_format": "array",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": "",
+                        "allow_in_bindings": 0,
+                        "preview_size": "medium",
+                        "parent_repeater": "field_68f7509ad7dec"
+                    },
+                    {
+                        "key": "field_68f750b3d7dee",
+                        "label": "Benefit",
+                        "name": "benefit",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f7509ad7dec"
+                    }
+                ]
+            },
+            {
+                "key": "field_68f751999ccce",
+                "label": "Disclaimer text",
+                "name": "disclaimer_text",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_6920aa29873db",
+                "label": "Webhook URL",
+                "name": "webhook_url",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_tab_qna_001",
+                "label": "Questions & Answers",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_68f750d4f8471",
+                "label": "Questions and Answers",
+                "name": "questions_and_answers",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "layout": "block",
+                "pagination": 1,
+                "rows_per_page": 1,
+                "min": 0,
+                "max": 0,
+                "collapsed": "",
+                "button_label": "Add Row",
+                "sub_fields": [
+                    {
+                        "key": "field_q_question_text_001",
+                        "label": "Question",
+                        "name": "question",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_q_required_001",
+                        "label": "Is required?",
+                        "name": "is_required",
+                        "aria-label": "",
+                        "type": "true_false",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "User must answer this question",
+                        "ui": 1,
+                        "default_value": 0,
+                        "show_in_graphql": 1,
+                        "ui_on_text": "",
+                        "ui_off_text": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_q_help_001",
+                        "label": "Help text",
+                        "name": "help_text",
+                        "aria-label": "",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "rows": 2,
+                        "new_lines": "",
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_q_weight_001",
+                        "label": "Weight (multiplier)",
+                        "name": "weight",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "Multiply the per-question score by this amount (optional).",
+                        "required": false,
+                        "conditional_logic": false,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 1,
+                        "min": 0,
+                        "step": 0.1,
+                        "show_in_graphql": 1,
+                        "max": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_mc_multi_002",
+                        "label": "Allow multiple selection",
+                        "name": "mc_allow_multiple",
+                        "aria-label": "",
+                        "type": "true_false",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "multiple_choice"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "Checkboxes (multiple). If off, use radio buttons (single).",
+                        "ui": 1,
+                        "default_value": 0,
+                        "show_in_graphql": 1,
+                        "ui_on_text": "",
+                        "ui_off_text": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_mc_options_002",
+                        "label": "Options",
+                        "name": "options",
+                        "aria-label": "",
+                        "type": "repeater",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "multiple_choice"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "layout": "table",
+                        "button_label": "Add option",
+                        "min": 2,
+                        "max": 0,
+                        "show_in_graphql": 1,
+                        "rows_per_page": 20,
+                        "collapsed": "",
+                        "sub_fields": [
+                            {
+                                "key": "field_mc_label_002",
+                                "label": "Option label",
+                                "name": "option_label",
+                                "aria-label": "",
+                                "type": "text",
+                                "instructions": "",
+                                "required": 1,
+                                "conditional_logic": false,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "show_in_graphql": 1,
+                                "default_value": "",
+                                "maxlength": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "parent_repeater": "field_mc_options_002"
+                            },
+                            {
+                                "key": "field_mc_value_002",
+                                "label": "Option value",
+                                "name": "option_value",
+                                "aria-label": "",
+                                "type": "text",
+                                "instructions": "Optional stable value (defaults to label if empty).",
+                                "required": false,
+                                "conditional_logic": false,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "show_in_graphql": 1,
+                                "default_value": "",
+                                "maxlength": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "parent_repeater": "field_mc_options_002"
+                            },
+                            {
+                                "key": "field_mc_score_002",
+                                "label": "Score",
+                                "name": "score",
+                                "aria-label": "",
+                                "type": "number",
+                                "instructions": "Points awarded if selected (optional).",
+                                "required": false,
+                                "conditional_logic": false,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "show_in_graphql": 1,
+                                "default_value": "",
+                                "min": "",
+                                "max": "",
+                                "step": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "parent_repeater": "field_mc_options_002"
+                            }
+                        ],
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_scale_min_002",
+                        "label": "Minimum value",
+                        "name": "min_value",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "scale_0_10"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 0,
+                        "show_in_graphql": 1,
+                        "min": "",
+                        "max": "",
+                        "step": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_scale_max_002",
+                        "label": "Maximum value",
+                        "name": "max_value",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "scale_0_10"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 10,
+                        "show_in_graphql": 1,
+                        "min": "",
+                        "max": "",
+                        "step": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_scale_step_002",
+                        "label": "Step",
+                        "name": "step",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "scale_0_10"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 1,
+                        "show_in_graphql": 1,
+                        "min": "",
+                        "max": "",
+                        "step": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_scale_ppu_002",
+                        "label": "Points per unit",
+                        "name": "points_per_unit",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "Linear scoring: score = selected_value × points_per_unit.",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "scale_0_10"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": 1,
+                        "show_in_graphql": 1,
+                        "min": "",
+                        "max": "",
+                        "step": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_scale_min_label_002",
+                        "label": "Min label",
+                        "name": "min_label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "Label shown at the left\/low end of the scale (e.g. \"No formal programs\").",
+                        "required": false,
+                        "conditional_logic": [[{"field": "field_quiz_type_001","operator": "==","value": "scale_0_10"}]],
+                        "wrapper": {"width": "50","class": "","id": ""},
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_scale_max_label_002",
+                        "label": "Max label",
+                        "name": "max_label",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "Label shown at the right\/high end of the scale (e.g. \"Comprehensive, structured programs\").",
+                        "required": false,
+                        "conditional_logic": [[{"field": "field_quiz_type_001","operator": "==","value": "scale_0_10"}]],
+                        "wrapper": {"width": "50","class": "","id": ""},
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_scale_map_002",
+                        "label": "Value\/Score overrides (optional)",
+                        "name": "value_score_map",
+                        "aria-label": "",
+                        "type": "repeater",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "scale_0_10"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "layout": "table",
+                        "button_label": "Add override",
+                        "min": 0,
+                        "max": 0,
+                        "show_in_graphql": 1,
+                        "rows_per_page": 20,
+                        "collapsed": "",
+                        "sub_fields": [
+                            {
+                                "key": "field_scale_map_value_002",
+                                "label": "Value",
+                                "name": "value",
+                                "aria-label": "",
+                                "type": "number",
+                                "instructions": "",
+                                "required": 1,
+                                "conditional_logic": false,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "show_in_graphql": 1,
+                                "default_value": "",
+                                "min": "",
+                                "max": "",
+                                "step": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "parent_repeater": "field_scale_map_002"
+                            },
+                            {
+                                "key": "field_scale_map_score_002",
+                                "label": "Score",
+                                "name": "score",
+                                "aria-label": "",
+                                "type": "number",
+                                "instructions": "",
+                                "required": 1,
+                                "conditional_logic": false,
+                                "wrapper": {
+                                    "width": "",
+                                    "class": "",
+                                    "id": ""
+                                },
+                                "show_in_graphql": 1,
+                                "default_value": "",
+                                "min": "",
+                                "max": "",
+                                "step": "",
+                                "placeholder": "",
+                                "prepend": "",
+                                "append": "",
+                                "parent_repeater": "field_scale_map_002"
+                            }
+                        ],
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_tf_label_true_002",
+                        "label": "Label for TRUE",
+                        "name": "label_true",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "true_false"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "True",
+                        "show_in_graphql": 1,
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_tf_label_false_002",
+                        "label": "Label for FALSE",
+                        "name": "label_false",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "true_false"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "False",
+                        "show_in_graphql": 1,
+                        "maxlength": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_tf_score_true_002",
+                        "label": "Score if TRUE",
+                        "name": "score_if_true",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "true_false"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "min": "",
+                        "max": "",
+                        "step": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    },
+                    {
+                        "key": "field_tf_score_false_002",
+                        "label": "Score if FALSE",
+                        "name": "score_if_false",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_quiz_type_001",
+                                    "operator": "==",
+                                    "value": "true_false"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "min": "",
+                        "max": "",
+                        "step": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f750d4f8471"
+                    }
+                ]
+            },
+            {
+                "key": "field_tab_feedback_001",
+                "label": "Feedback",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": false,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_68f751da030c9",
+                "label": "Results heading",
+                "name": "results_heading",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_68f751e7030ca",
+                "label": "Results subheading",
+                "name": "results_subheading",
+                "aria-label": "",
+                "type": "text",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "placeholder": "",
+                "prepend": "",
+                "append": ""
+            },
+            {
+                "key": "field_68f75229608d4",
+                "label": "Scorecard assessments",
+                "name": "scorecard_assessments",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "layout": "row",
+                "pagination": 1,
+                "rows_per_page": 1,
+                "min": 0,
+                "max": 0,
+                "collapsed": "",
+                "button_label": "Add Row",
+                "sub_fields": [
+                    {
+                        "key": "field_68f7523c608d5",
+                        "label": "Score Range Low",
+                        "name": "score_range_low",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "min": "",
+                        "max": "",
+                        "allow_in_bindings": 1,
+                        "placeholder": "",
+                        "step": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f75229608d4"
+                    },
+                    {
+                        "key": "field_68f754664cd54",
+                        "label": "Score Range High",
+                        "name": "score_range_high",
+                        "aria-label": "",
+                        "type": "number",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "min": "",
+                        "max": "",
+                        "allow_in_bindings": 1,
+                        "placeholder": "",
+                        "step": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f75229608d4"
+                    },
+                    {
+                        "key": "field_68f7550be7ce2",
+                        "label": "Insight name",
+                        "name": "insight_name",
+                        "aria-label": "",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "maxlength": "",
+                        "allow_in_bindings": 0,
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "parent_repeater": "field_68f75229608d4"
+                    },
+                    {
+                        "key": "field_68f7525b608d6",
+                        "label": "Insight text",
+                        "name": "insight",
+                        "aria-label": "",
+                        "type": "wysiwyg",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "default_value": "",
+                        "allow_in_bindings": 1,
+                        "tabs": "all",
+                        "toolbar": "full",
+                        "media_upload": 1,
+                        "delay": 0,
+                        "parent_repeater": "field_68f75229608d4"
+                    },
+                    {
+                        "key": "field_68f7526a608d7",
+                        "label": "Next steps",
+                        "name": "next_steps",
+                        "aria-label": "",
+                        "type": "wysiwyg",
+                        "instructions": "",
+                        "required": false,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "show_in_graphql": 1,
+                        "tabs": "all",
+                        "toolbar": "full",
+                        "media_upload": 1,
+                        "default_value": "",
+                        "delay": 0,
+                        "parent_repeater": "field_68f75229608d4"
+                    }
+                ]
+            },
+            {
+                "key": "field_68f75211030cb",
+                "label": "Discovery call iframe",
+                "name": "discovery_call_iframe",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": "",
+                "placeholder": "",
+                "new_lines": ""
+            },
+            {
+                "key": "field_69661fe399fcb",
+                "label": "Styling",
+                "name": "",
+                "aria-label": "",
+                "type": "tab",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "placement": "top",
+                "endpoint": 0,
+                "selected": 0
+            },
+            {
+                "key": "field_6966201699fcc",
+                "label": "Primary Colour",
+                "name": "primary_colour",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "This colour will be used for headings, primary CTA's and user answer buttons",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_6966207899fcd",
+                "label": "Secondary Colour",
+                "name": "secondary_colour",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "This will be used for copy, headings and answer boxes.",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_6966315466b35",
+                "label": "Primary Text Colour",
+                "name": "primary_text_colour",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_6966316166b36",
+                "label": "Secondary Text Colour",
+                "name": "secondary_text_colour",
+                "aria-label": "",
+                "type": "color_picker",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "enable_opacity": 0,
+                "return_format": "string",
+                "allow_in_bindings": 1
+            },
+            {
+                "key": "field_696631c87302a",
+                "label": "Custom CSS",
+                "name": "custom_css",
+                "aria-label": "",
+                "type": "textarea",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "show_in_graphql": 1,
+                "default_value": "",
+                "maxlength": "",
+                "allow_in_bindings": 0,
+                "rows": "",
+                "placeholder": "",
+                "new_lines": ""
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "quiz"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0,
+        "show_in_graphql": 1,
+        "graphql_field_name": "quizFields",
+        "map_graphql_types_from_location_rules": 0,
+        "graphql_types": ""
+    }
+]

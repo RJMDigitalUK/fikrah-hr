@@ -455,6 +455,8 @@ export const pageQuery = graphql`
 					maxValue
 					step
 					pointsPerUnit
+					minLabel
+					maxLabel
 					valueScoreMap {
 						value
 						score
