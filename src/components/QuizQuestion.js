@@ -130,26 +130,27 @@ const QuizQuestion = ({
 					/>
 				</Col>
 					<Col xs={12} lg={8} className="px-1 px-md-0">
-						<div className="question-box py-5 px-5 rounded-top" style={{ borderBottomLeftRadius: '50% 20px', borderBottomRightRadius: '50% 20px', backgroundColor: secondaryColour, color: secondaryTextColour }}>
-							<h3 className="text-center">{question.question}</h3>							
+					<div className="quiz-question-card rounded-3 overflow-hidden">
+						<div className="question-box py-5 px-5 rounded-top" style={{ borderBottomLeftRadius: '50% 20px', borderBottomRightRadius: '50% 20px', backgroundColor: primaryColour, color: primaryTextColour }}>
+							<h5 className="text-center">{question.question}</h5>							
 						</div>
 
 						{question.helpText && (
 							<p className="text-muted mb-4">{question.helpText}</p>
 						)}
 
-						<div className="py-6 pt-md-5">
+						<div className="py-6 pt-md-5 px-3 px-md-4">
 							{renderQuestion()}
 						</div>
 
-						<Row className="g-3  pt-4">
+						<Row className="g-3 pt-4 px-3 pb-4">
 							<Col xs={6}>
 								<Button
 									variant="secondary"
 									onClick={onBack}
 									disabled={currentQuestion === 1}
 									className="w-100 py-3 w-xl-75"
-									style={{background: secondaryColour, color: secondaryTextColour, borderColor: secondaryColour}}
+									style={{background: secondaryColour, color: secondaryTextColour, borderColor: secondaryColour, borderRadius: '30px'}}
 								>
 									Previous
 								</Button>
@@ -160,13 +161,14 @@ const QuizQuestion = ({
 									onClick={onNext}
 									disabled={!canProceed}
 									className="w-100 py-3 w-xl-75"
-									style={{background: primaryColour, color: primaryTextColour}}
+									style={{background: primaryColour, color: primaryTextColour, borderColor: primaryColour, borderRadius: '30px'}}
 								>
 									{currentQuestion === totalQuestions ? "Continue" : "Next"}
 								</Button>
 							</Col>
 						</Row>
-					</Col>
+					</div>
+				</Col>
 				</Row>
 			</Container>
 		</section>

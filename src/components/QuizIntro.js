@@ -9,8 +9,8 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
 	return (
 		<section className="quiz-intro-section py-5">
 			<Container className="">
-			
-					<Row className="justify-content-center py-4 mx-3 mx-md-5 mx-lg-9 py-lg-5 rounded-top-1 px-md-4" style={{background: primaryColour}}>
+			<div className="quiz-intro-card mx-3 mx-md-5 mx-lg-9 rounded-3 overflow-hidden">
+					<Row className="justify-content-center py-4 py-lg-5 px-md-4" style={{background: primaryColour}}>
 						<Col xs={12}>
 							{title && (
 								<h1 className="text-center quiz-title" style={{color:primaryTextColour}}>{title}</h1>
@@ -20,7 +20,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
 					</Row>
 
 				{benefits && benefits.length > 0 && (
-					<Row className="pb-5 mx-3 mx-md-5 mx-lg-9 quiz-benefits-row">
+					<Row className="pb-5 quiz-benefits-row">
 						<hr className="mt-2 mb-5 border-3 opacity-100" style={{borderColor: primaryColour}}/>
 						{description && (
 								<p className="text-center  mb-5 px-lg-9 pb-lg-5">{description}</p>
@@ -32,7 +32,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
             <div className="position-relative d-flex d-md-block align-items-center py-2 py-md-2 px-md-1 mb-3 rounded-start-3 rounded-top-3 h-md-100 w-lg-75 mx-lg-auto" style={{background: secondaryColour, color: secondaryTextColour}}>
                 {icon && (
                     <div 
-                        className="ms-3 me-3 d-flex justify-content-center align-items-center"
+                        className="quiz-benefit-icon ms-3 me-3 d-flex justify-content-center align-items-center"
                         style={isDesktop ? {
                             position: 'absolute',
                             top: '0',
@@ -53,7 +53,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
                 )}
                 {!icon && benefit?.icon?.sourceUrl && (
                     <div 
-                        className="ms-3 ms-md-0 me-3 d-flex justify-content-center align-items-center"
+                        className="quiz-benefit-icon ms-3 me-3 d-flex justify-content-center align-items-center"
                         style={isDesktop ? {
                             position: 'absolute',
                             top: '0',
@@ -84,7 +84,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
 					</Row>
 				)}
 
-				<Row className="justify-content-center bg-white mx-3 mx-md-5 pb-4 mx-lg-9 pt-lg-5 rounded-bottom-1">
+				<Row className="justify-content-center bg-white pb-4 pt-lg-5">
 					<Col xs={12} md={6} className="text-center">
 						{cta && cta.title && (
 							<Button
@@ -101,8 +101,8 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
 						)}
 					</Col>
 				</Row>
-			
-			</Container>			
+			</div>
+		</Container>			
 		</section>
 	);
 };
