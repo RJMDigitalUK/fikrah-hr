@@ -221,6 +221,60 @@ const QuizTemplate = ({ data: { wpQuiz, site } }) => {
 		question_score: calculateQuestionScore(question, answers[index], index)
 	}));
 
+	const calculateGroupedScores = () => {
+		const groups = {};
+		const pillarOrder = [];
+
+		questions.forEach((question, index) => {
+			const pillar = question.pillar;
+			const subPillar = question.subPillar;
+			if (!pillar) return;
+
+			if (!groups[pillar]) {
+				groups[pillar] = { total: 0, max: 0, subPillars: {}, subPillarOrder: [] };
+				pillarOrder.push(pillar);
+			}
+			if (subPillar && !groups[pillar].subPillars[subPillar]) {
+				groups[pillar].subPillars[subPillar] = { total: 0, max: 0 };
+				groups[pillar].subPillarOrder.push(subPillar);
+			}
+
+			const weight = question.weight || 1;
+			let maxQ = 0;
+			switch (quizFields?.quizAnswerType) {
+				case 'scale_0_10':
+					if (question.valueScoreMap?.length > 0) {
+						maxQ = Math.max(...question.valueScoreMap.map(m => m.score || 0));
+					} else {
+						maxQ = (question.maxValue || 5) * (question.pointsPerUnit || 1);
+					}
+					break;
+				case 'multiple_choice':
+					if (question.mcAllowMultiple) {
+						question.options?.forEach(o => { maxQ += o?.score || 0; });
+					} else {
+						maxQ = Math.max(...(question.options?.map(o => o?.score || 0) || [0]));
+					}
+					break;
+				case 'true_false':
+					maxQ = Math.max(question.scoreIfTrue || 0, question.scoreIfFalse || 0);
+					break;
+				default: break;
+			}
+			maxQ *= weight;
+
+			const qScore = calculateQuestionScore(question, answers[index], index);
+			groups[pillar].total += qScore;
+			groups[pillar].max += maxQ;
+			if (subPillar) {
+				groups[pillar].subPillars[subPillar].total += qScore;
+				groups[pillar].subPillars[subPillar].max += maxQ;
+			}
+		});
+
+		return { groups, pillarOrder };
+	};
+
 	function calculateQuestionScore(question, answer, index) {
 		if (answer === undefined || answer === null) return 0;
 
@@ -308,6 +362,7 @@ const QuizTemplate = ({ data: { wpQuiz, site } }) => {
 					resultsSubheading={quizFields?.resultsSubheading}
 					score={score}
 					maxPossibleScore={maxPossibleScore}
+					groupedScores={calculateGroupedScores()}
 					totalQuestions={totalQuestions}
 					scorecardAssessments={quizFields?.scorecardAssessments}
 					discoveryCallIframe={quizFields?.discoveryCallIframe}
@@ -465,6 +520,8 @@ export const pageQuery = graphql`
 					labelFalse
 					scoreIfTrue
 					scoreIfFalse
+					pillar
+					subPillar
 				}
 				resultsHeading
 				resultsSubheading
