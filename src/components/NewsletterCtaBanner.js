@@ -25,17 +25,21 @@ const NewsletterCtaBanner = ({
 	const [field2, setField2] = useState("");
 	const [submitting, setSubmitting] = useState(false);
 
-	const bgImage = getImage(backgroundImage?.localFile);
+	const isSvg = backgroundImage?.mimeType === "image/svg+xml";
+	const bgImage = isSvg ? null : getImage(backgroundImage?.localFile);
+	const svgUrl = isSvg ? (backgroundImage?.localFile?.publicURL || backgroundImage?.sourceUrl) : null;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!webhookUrl) return;
 		setSubmitting(true);
+		const payload = { field1 };
+		if (field2PlaceholderText) payload.field2 = field2;
 		try {
 			await fetch(webhookUrl, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ field1, field2 }),
+				body: JSON.stringify(payload),
 			});
 			if (redirectUrl) {
 				window.location.href = redirectUrl;
@@ -49,101 +53,112 @@ const NewsletterCtaBanner = ({
 
 	return (
 		<section
-			className="newsletter-cta-banner-section py-5 position-relative"
+			className="newsletter-cta-banner-section py-7 position-relative"
 			style={{ backgroundColor: backgroundColour }}
 		>
 			{bgImage && (
 				<GatsbyImage
 					image={bgImage}
-					alt={backgroundImage?.altText || "Banner background"}
-					className="newsletter-cta-banner-background-image"
-					style={{
-						position: "absolute",
-						top: 0,
-						left: 0,
-						width: "100%",
-						height: "100%",
-						zIndex: 0,
-					}}
+					alt={backgroundImage?.altText || ""}
+					className="position-absolute top-0 start-0 w-100 h-100"
+					style={{ zIndex: 0 }}
 					imgStyle={{ objectFit: "cover" }}
 				/>
 			)}
-			<Container className="newsletter-cta-banner-content-container position-relative" style={{ zIndex: 1 }}>
-				<Row className="justify-content-center">
-					<Col xs={12} lg={8} className="text-center">
-						{heading && (
-							<h2
-								className="newsletter-cta-banner-heading mb-3"
-								style={{ color: headingTextColour }}
-							>
-								{heading}
-							</h2>
-						)}
-						{description && (
-							<p
-								className="newsletter-cta-banner-description mb-4"
-								style={{ color: descriptionTextColour }}
-							>
-								{description}
-							</p>
-						)}
-
-						<Form className="newsletter-cta-banner-form" onSubmit={handleSubmit}>
-							<Row className="g-3 justify-content-center">
-								{field1PlaceholderText && (
-									<Col xs={12} md={4}>
-										<Form.Control
-											className="newsletter-cta-banner-field1"
-											type="text"
-											placeholder={field1PlaceholderText}
-											value={field1}
-											onChange={(e) => setField1(e.target.value)}
-											required
-										/>
-									</Col>
+			{svgUrl && (
+				<img
+					src={svgUrl}
+					alt={backgroundImage?.altText || ""}
+					className="position-absolute top-0 start-0 w-100 h-100"
+					style={{ objectFit: "cover", zIndex: 0 }}
+				/>
+			)}
+			<Container className="position-relative" style={{ zIndex: 1 }}>
+				<Row className="justify-content-center text-center">
+					<Col xs={12} md={12}>
+						<div className="">
+							{heading && (
+								<h2
+									className="newsletter-cta-banner-heading"
+									style={{ color: headingTextColour }}
+								>
+									{heading}
+								</h2>
+							)}
+							<div className="pt-3">
+								{description && (
+									<p
+										className="newsletter-cta-banner-description"
+										style={{ color: descriptionTextColour }}
+									>
+										{description}
+									</p>
 								)}
-								{field2PlaceholderText && (
-									<Col xs={12} md={4}>
-										<Form.Control
-											className="newsletter-cta-banner-field2"
-											type="email"
-											placeholder={field2PlaceholderText}
-											value={field2}
-											onChange={(e) => setField2(e.target.value)}
-											required
-										/>
-									</Col>
+								<Form className="newsletter-cta-banner-form py-3" onSubmit={handleSubmit}>
+									<Row className="g-3 justify-content-center">
+										{field1PlaceholderText && (
+											<Col xs={12} md={4}>
+												<Form.Control
+													className="newsletter-cta-banner-field1"
+													type="text"
+													placeholder={field1PlaceholderText}
+													value={field1}
+													onChange={(e) => setField1(e.target.value)}
+													required
+												/>
+											</Col>
+										)}
+										{field2PlaceholderText && (
+											<Col xs={12} md={4}>
+												<Form.Control
+													className="newsletter-cta-banner-field2"
+													type="email"
+													placeholder={field2PlaceholderText}
+													value={field2}
+													onChange={(e) => setField2(e.target.value)}
+													required
+												/>
+											</Col>
+										)}
+										{ctaButton && ctaButton.title && (
+											<Col xs={12} md="auto">
+												<Button
+													type="submit"
+													variant="primary"
+													className="newsletter-cta-banner-cta-button btn-primary py-2 px-5 w-100"
+													disabled={submitting}
+													style={{
+														...(ctaButtonColour && { backgroundColor: ctaButtonColour, borderColor: ctaButtonColour }),
+														...(ctaTextColour && { color: ctaTextColour }),
+													}}
+												>
+													{submitting ? "Submitting…" : ctaButton.title}
+												</Button>
+											</Col>
+										)}
+									</Row>
+								</Form>
+								{disclaimer && (
+									<div
+										className="newsletter-cta-banner-disclaimer mt-3 small"
+										style={{ color: disclaimerTextColour }}
+									>
+										<SafeHtmlParser htmlContent={disclaimer} />
+									</div>
 								)}
-								{ctaButton && ctaButton.title && (
-									<Col xs={12} md="auto">
-										<Button
-											type="submit"
-											variant="primary"
-											className="newsletter-cta-banner-cta-button btn-primary py-2 px-4 w-100"
-											disabled={submitting}
-											style={{
-												...(ctaButtonColour && { backgroundColor: ctaButtonColour, borderColor: ctaButtonColour }),
-												...(ctaTextColour && { color: ctaTextColour }),
-											}}
-										>
-											{submitting ? "Submitting…" : ctaButton.title}
-										</Button>
-									</Col>
-								)}
-							</Row>
-						</Form>
-
-						{disclaimer && (
-							<div
-								className="newsletter-cta-banner-disclaimer mt-3 small"
-								style={{ color: disclaimerTextColour }}
-							>
-								<SafeHtmlParser htmlContent={disclaimer} />
 							</div>
-						)}
+						</div>
 					</Col>
 				</Row>
 			</Container>
+			<style>{`
+				.newsletter-cta-banner-field1,
+				.newsletter-cta-banner-field2 {
+					background-color: #FFFFFFBF !important;
+					border-radius: 100px !important;
+					border: 1px solid #ffffff !important;
+				}
+			`}</style>
 			{customCss && <style>{`${customCss}`}</style>}
 		</section>
 	);

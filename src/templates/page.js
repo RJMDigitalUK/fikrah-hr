@@ -882,8 +882,10 @@ export const query = graphql`
 					... on WpPage_Pagefields_Components_NewsletterCtaBanner {
 						backgroundImage {
 							altText
+							mimeType
 							sourceUrl
 							localFile {
+								publicURL
 								childImageSharp {
 									gatsbyImageData(
 										formats: [WEBP, AUTO]

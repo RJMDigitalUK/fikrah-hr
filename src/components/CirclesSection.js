@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { SafeHtmlParser } from "./SafeHtmlParser";
 import { Link } from "gatsby";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const CirclesSection = ({
 	subheading,
@@ -21,13 +22,17 @@ const CirclesSection = ({
 	customCss
 }) => {
 	const sectionImage = getImage(image?.localFile);
+	const [activeIndex, setActiveIndex] = useState(0);
+	const total = service?.length || 0;
+	const prev = () => setActiveIndex(i => (i - 1 + total) % total);
+	const next = () => setActiveIndex(i => (i + 1) % total);
 
 	return (
 		<section
-			className="circles-section py-5 py-lg-7"
+			className="circles-section py-5 py-lg-7 px-md-0"
 			style={{ backgroundColor: backgroundColour }}
 		>
-			<Container className="circles-section-content-container">
+			<Container fluid className="circles-section-content-container px-md-0">
 				<Row className="justify-content-center text-center mb-5">
 					<Col xs={12} lg={8}>
 						{subheading && (
@@ -50,7 +55,7 @@ const CirclesSection = ({
 				</Row>
 
 				{sectionImage && (
-					<Row className="justify-content-center mb-5">
+					<Row className="justify-content-center mb-5 d-none d-xl-flex">
 						<Col xs={12} md={8} lg={6} className="text-center">
 							<GatsbyImage
 								image={sectionImage}
@@ -62,49 +67,45 @@ const CirclesSection = ({
 				)}
 
 				{service && service.length > 0 && (
-					<Row className="circles-section-services g-4 justify-content-center">
-						{service.map((item, index) => {
-							const iconImage = getImage(item.icon?.localFile);
-							const iconHoverImage = getImage(item.iconHoverState?.localFile);
-							const isSvg = item.icon?.mimeType === "image/svg+xml";
-							const iconSrc = item.icon?.localFile?.publicURL || item.icon?.sourceUrl;
+					<>
+						{/* Mobile carousel — xs/sm only */}
+						<div className="d-block d-md-none">
+							{(() => {
+								const item = service[activeIndex];
+								const iconHoverImage = getImage(item.iconHoverState?.localFile);
+								const iconHoverSrc = item.iconHoverState?.localFile?.publicURL || item.iconHoverState?.sourceUrl;
+								const iconDefaultImage = getImage(item.icon?.localFile);
+								const iconDefaultSrc = item.icon?.localFile?.publicURL || item.icon?.sourceUrl;
+								const displayImage = iconHoverImage || iconDefaultImage;
+								const displaySrc = !displayImage ? (iconHoverSrc || iconDefaultSrc) : null;
+								const displayAlt = item.iconHoverState?.altText || item.icon?.altText || "Service icon";
 
-							return (
-								<Col xs={12} sm={6} md={4} key={index}>
+								return (
 									<div
-										className="circles-section-service-item text-center p-4 h-100"
-										style={{ "--hover-colour": item.hoverColour }}
+										className="circles-section-mobile-card mx-auto"
+										style={{ backgroundColor: item.hoverColour }}
 									>
-										{item.icon && (
-											<div className="circles-section-service-icon-container mb-3">
-												{isSvg ? (
-													<img
-														src={iconSrc}
-														alt={item.icon?.altText || "Service icon"}
-														className="circles-section-service-icon"
-														style={{ width: "64px", height: "64px" }}
-													/>
-												) : iconImage ? (
+										{(displayImage || displaySrc) && (
+											<div className="circles-section-service-icon-container mb-2">
+												{displayImage ? (
 													<GatsbyImage
-														image={iconImage}
-														alt={item.icon?.altText || "Service icon"}
+														image={displayImage}
+														alt={displayAlt}
 														className="circles-section-service-icon"
-														style={{ width: "64px", height: "64px" }}
+														style={{ width: "56px", height: "56px" }}
 													/>
-												) : iconSrc ? (
+												) : (
 													<img
-														src={iconSrc}
-														alt={item.icon?.altText || "Service icon"}
+														src={displaySrc}
+														alt={displayAlt}
 														className="circles-section-service-icon"
-														style={{ width: "64px", height: "64px", objectFit: "contain" }}
+														style={{ width: "56px", height: "56px", objectFit: "contain" }}
 													/>
-												) : null}
+												)}
 											</div>
 										)}
 										{item.heading && (
-											<h3 className="circles-section-service-heading mb-2">
-												{item.heading}
-											</h3>
+											<h3 className="circles-section-service-heading mb-2">{item.heading}</h3>
 										)}
 										{item.description && (
 											<div className="circles-section-service-description">
@@ -112,10 +113,164 @@ const CirclesSection = ({
 											</div>
 										)}
 									</div>
-								</Col>
-							);
-						})}
-					</Row>
+								);
+							})()}
+
+							{/* Controls: dots bottom-left, arrows bottom-right */}
+							<div className="d-flex justify-content-between align-items-center mt-3 px-2">
+								<div className="d-flex gap-2">
+									{service.map((_, i) => (
+										<button
+											key={i}
+											className={`circles-carousel-dot${i === activeIndex ? " active" : ""}`}
+											onClick={() => setActiveIndex(i)}
+											aria-label={`Go to slide ${i + 1}`}
+										/>
+									))}
+								</div>
+								<div className="d-flex gap-2">
+									<button className="circles-carousel-arrow" onClick={prev} aria-label="Previous">
+										<FaChevronLeft size={14} />
+									</button>
+									<button className="circles-carousel-arrow" onClick={next} aria-label="Next">
+										<FaChevronRight size={14} />
+									</button>
+								</div>
+							</div>
+						</div>
+
+					{/* md/lg peek carousel */}
+					<div className="d-none d-md-block d-xl-none">
+						<div className="circles-peek-wrapper">
+							<div className="circles-peek-track">
+								{[-1, 0, 1].map((offset) => {
+									const idx = (activeIndex + offset + total) % total;
+									const item = service[idx];
+									const isActive = offset === 0;
+									const iconHoverImage = getImage(item.iconHoverState?.localFile);
+									const iconHoverSrc = item.iconHoverState?.localFile?.publicURL || item.iconHoverState?.sourceUrl;
+									const iconDefaultImage = getImage(item.icon?.localFile);
+									const iconDefaultSrc = item.icon?.localFile?.publicURL || item.icon?.sourceUrl;
+									const displayImage = isActive ? (iconHoverImage || iconDefaultImage) : iconDefaultImage;
+									const displaySrc = !displayImage ? (isActive ? (iconHoverSrc || iconDefaultSrc) : iconDefaultSrc) : null;
+									const displayAlt = (isActive ? item.iconHoverState?.altText : null) || item.icon?.altText || "Service icon";
+
+									return (
+										<div
+											key={offset}
+											className={`circles-peek-item${isActive ? " active" : ""}`}
+											style={isActive ? { backgroundColor: item.hoverColour } : {}}
+											onClick={() => { if (!isActive) setActiveIndex(idx); }}
+										>
+											{(displayImage || displaySrc) && (
+												<div className="circles-section-service-icon-container mb-2">
+													{displayImage ? (
+														<GatsbyImage
+															image={displayImage}
+															alt={displayAlt}
+															className="circles-section-service-icon"
+															style={{ width: "56px", height: "56px" }}
+														/>
+													) : (
+														<img
+															src={displaySrc}
+															alt={displayAlt}
+															className="circles-section-service-icon"
+															style={{ width: "56px", height: "56px", objectFit: "contain" }}
+														/>
+													)}
+												</div>
+											)}
+											{item.heading && (
+												<h3 className="circles-section-service-heading mb-2">{item.heading}</h3>
+											)}
+											{item.description && (
+												<div className="circles-section-service-description">
+													<SafeHtmlParser htmlContent={item.description} />
+												</div>
+											)}
+										</div>
+									);
+								})}
+							</div>
+						</div>
+						<div className="position-relative d-flex justify-content-center align-items-center mt-3 mt-md-5 px-2">
+							<div className="d-flex gap-2">
+								{service.map((_, i) => (
+									<button
+										key={i}
+										className={`circles-carousel-dot${i === activeIndex ? " active" : ""}`}
+										onClick={() => setActiveIndex(i)}
+										aria-label={`Go to slide ${i + 1}`}
+									/>
+								))}
+							</div>
+							<div className="d-flex gap-2 position-absolute end-0 me-2">
+								<button className="circles-carousel-arrow" onClick={prev} aria-label="Previous">
+									<FaChevronLeft size={14} />
+								</button>
+								<button className="circles-carousel-arrow" onClick={next} aria-label="Next">
+									<FaChevronRight size={14} />
+								</button>
+							</div>
+						</div>
+					</div>
+
+					{/* Desktop grid — xl+ */}
+					<Row className="circles-section-services g-4 justify-content-center d-none d-xl-flex">
+							{service.map((item, index) => {
+								const iconImage = getImage(item.icon?.localFile);
+								const isSvg = item.icon?.mimeType === "image/svg+xml";
+								const iconSrc = item.icon?.localFile?.publicURL || item.icon?.sourceUrl;
+
+								return (
+									<Col xs={12} sm={6} md={4} key={index}>
+										<div
+											className="circles-section-service-item text-center p-4 h-100"
+											style={{ "--hover-colour": item.hoverColour }}
+										>
+											{item.icon && (
+												<div className="circles-section-service-icon-container mb-3">
+													{isSvg ? (
+														<img
+															src={iconSrc}
+															alt={item.icon?.altText || "Service icon"}
+															className="circles-section-service-icon"
+															style={{ width: "64px", height: "64px" }}
+														/>
+													) : iconImage ? (
+														<GatsbyImage
+															image={iconImage}
+															alt={item.icon?.altText || "Service icon"}
+															className="circles-section-service-icon"
+															style={{ width: "64px", height: "64px" }}
+														/>
+													) : iconSrc ? (
+														<img
+															src={iconSrc}
+															alt={item.icon?.altText || "Service icon"}
+															className="circles-section-service-icon"
+															style={{ width: "64px", height: "64px", objectFit: "contain" }}
+														/>
+													) : null}
+												</div>
+											)}
+											{item.heading && (
+												<h3 className="circles-section-service-heading mb-2">
+													{item.heading}
+												</h3>
+											)}
+											{item.description && (
+												<div className="circles-section-service-description">
+													<SafeHtmlParser htmlContent={item.description} />
+												</div>
+											)}
+										</div>
+									</Col>
+								);
+							})}
+						</Row>
+					</>
 				)}
 
 				{(primaryCtaButton?.title || secondaryCtaButton?.title) && (
@@ -157,6 +312,101 @@ const CirclesSection = ({
 					</Row>
 				)}
 			</Container>
+			<style>{`
+				.circles-section-service-heading,
+				.circles-section-service-description,
+				.circles-section-service-description p {
+					color: #292D65;
+				}
+				.circles-section-mobile-card {
+					width: min(340px, 90vw);
+					height: min(340px, 90vw);
+					border-radius: 50%;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					padding: 40px;
+					text-align: center;
+					overflow: hidden;
+				}
+				@media (max-width: 767px) {
+					.circles-section-mobile-card .circles-section-service-heading {
+						font-size: 22px !important;
+					}
+					.circles-section-mobile-card .circles-section-service-description,
+					.circles-section-mobile-card .circles-section-service-description p {
+						font-size: 16px !important;
+					}
+				}
+				.circles-peek-wrapper {
+					overflow: hidden;
+				}
+				.circles-peek-track {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					gap: 2vw;
+				}
+				.circles-peek-item {
+					flex: 0 0 auto;
+					border-radius: 50%;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					padding: 40px;
+					text-align: center;
+					overflow: hidden;
+					cursor: pointer;
+					border: 2px solid rgba(255, 255, 255, 0.3);
+				}
+				.circles-peek-item.active {
+					border: none;
+					cursor: default;
+				}
+				.circles-peek-item:not(.active) .circles-section-service-heading,
+				.circles-peek-item:not(.active) .circles-section-service-description,
+				.circles-peek-item:not(.active) .circles-section-service-description p {
+					color: white;
+				}
+				@media (min-width: 768px) and (max-width: 1199px) {
+					.circles-peek-item {
+						width: 48vw;
+						height: 48vw;
+					}
+				}
+				.circles-carousel-dot {
+					width: 10px;
+					height: 10px;
+					border-radius: 50%;
+					border: none;
+					background-color: #7CB6E4;
+					padding: 0;
+					cursor: pointer;
+				}
+				.circles-carousel-dot.active {
+					background-color: #E83166;
+				}
+				.circles-carousel-arrow {
+					width: 48px;
+					height: 48px;
+					border-radius: 50%;
+					background: #ffffff;
+					border: 2px solid #292D65;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+					padding: 0;
+					color: #292D65;
+				}
+				.circles-carousel-arrow:hover {
+					background: #292D65;
+					color: #ffffff;
+                    border-color: #ffffff;
+				}
+			`}</style>
 			{customCss && <style>{`${customCss}`}</style>}
 		</section>
 	);
