@@ -54,18 +54,6 @@ const CirclesSection = ({
 					</Col>
 				</Row>
 
-				{sectionImage && (
-					<Row className="justify-content-center mb-5 d-none d-xl-flex">
-						<Col xs={12} md={8} lg={6} className="text-center">
-							<GatsbyImage
-								image={sectionImage}
-								alt={image?.altText || "Section image"}
-								className="circles-section-image"
-							/>
-						</Col>
-					</Row>
-				)}
-
 				{service && service.length > 0 && (
 					<>
 						{/* Mobile carousel — xs/sm only */}
@@ -216,60 +204,77 @@ const CirclesSection = ({
 						</div>
 					</div>
 
-					{/* Desktop grid — xl+ */}
-					<Row className="circles-section-services g-4 justify-content-center d-none d-xl-flex">
-							{service.map((item, index) => {
-								const iconImage = getImage(item.icon?.localFile);
-								const isSvg = item.icon?.mimeType === "image/svg+xml";
-								const iconSrc = item.icon?.localFile?.publicURL || item.icon?.sourceUrl;
+					{/* Desktop orbit layout — xl+ */}
+					<div className="circles-desktop-grid">
+						{service.map((item, index) => {
+							const iconDefaultImage = getImage(item.icon?.localFile);
+							const iconDefaultSrc = item.icon?.localFile?.publicURL || item.icon?.sourceUrl;
+							const iconHoverImage = getImage(item.iconHoverState?.localFile);
+							const iconHoverSrc = item.iconHoverState?.localFile?.publicURL || item.iconHoverState?.sourceUrl;
+							const hasHoverIcon = !!(iconHoverImage || iconHoverSrc);
 
-								return (
-									<Col xs={12} sm={6} md={4} key={index}>
-										<div
-											className="circles-section-service-item text-center p-4 h-100"
-											style={{ "--hover-colour": item.hoverColour }}
-										>
-											{item.icon && (
-												<div className="circles-section-service-icon-container mb-3">
-													{isSvg ? (
-														<img
-															src={iconSrc}
-															alt={item.icon?.altText || "Service icon"}
-															className="circles-section-service-icon"
-															style={{ width: "64px", height: "64px" }}
-														/>
-													) : iconImage ? (
-														<GatsbyImage
-															image={iconImage}
-															alt={item.icon?.altText || "Service icon"}
-															className="circles-section-service-icon"
-															style={{ width: "64px", height: "64px" }}
-														/>
-													) : iconSrc ? (
-														<img
-															src={iconSrc}
-															alt={item.icon?.altText || "Service icon"}
-															className="circles-section-service-icon"
-															style={{ width: "64px", height: "64px", objectFit: "contain" }}
-														/>
-													) : null}
-												</div>
-											)}
-											{item.heading && (
-												<h3 className="circles-section-service-heading mb-2">
-													{item.heading}
-												</h3>
-											)}
-											{item.description && (
-												<div className="circles-section-service-description">
-													<SafeHtmlParser htmlContent={item.description} />
-												</div>
+							return (
+								<div
+									key={index}
+									className={`circles-desktop-item circles-desktop-pos-${index}${hasHoverIcon ? " has-hover-icon" : ""}`}
+									style={{ "--hover-colour": item.hoverColour }}
+								>
+									{(iconDefaultImage || iconDefaultSrc) && (
+										<div className="circles-desktop-icon icon-default mb-2">
+											{iconDefaultImage ? (
+												<GatsbyImage
+													image={iconDefaultImage}
+													alt={item.icon?.altText || "Service icon"}
+													style={{ width: "56px", height: "56px" }}
+												/>
+											) : (
+												<img
+													src={iconDefaultSrc}
+													alt={item.icon?.altText || "Service icon"}
+													style={{ width: "56px", height: "56px", objectFit: "contain" }}
+												/>
 											)}
 										</div>
-									</Col>
-								);
-							})}
-						</Row>
+									)}
+									{hasHoverIcon && (
+										<div className="circles-desktop-icon icon-hover mb-2">
+											{iconHoverImage ? (
+												<GatsbyImage
+													image={iconHoverImage}
+													alt={item.iconHoverState?.altText || "Service icon"}
+													style={{ width: "56px", height: "56px" }}
+												/>
+											) : (
+												<img
+													src={iconHoverSrc}
+													alt={item.iconHoverState?.altText || "Service icon"}
+													style={{ width: "56px", height: "56px", objectFit: "contain" }}
+												/>
+											)}
+										</div>
+									)}
+									{item.heading && (
+										<h3 className="circles-section-service-heading mb-2">{item.heading}</h3>
+									)}
+									{item.description && (
+										<div className="circles-section-service-description">
+											<SafeHtmlParser htmlContent={item.description} />
+										</div>
+									)}
+								</div>
+							);
+						})}
+						{sectionImage && (
+							<div className="circles-desktop-center">
+								<GatsbyImage
+									image={sectionImage}
+									alt={image?.altText || "Section image"}
+									style={{ width: "100%", height: "100%" }}
+									imgStyle={{ objectFit: "cover" }}
+								/>
+							</div>
+						)}
+					</div>
 					</>
 				)}
 
@@ -405,6 +410,78 @@ const CirclesSection = ({
 					background: #292D65;
 					color: #ffffff;
                     border-color: #ffffff;
+				}
+				/* Desktop orbit grid — xl+ */
+				.circles-desktop-grid {
+					display: none;
+				}
+				@media (min-width: 1200px) {
+					.circles-desktop-grid {
+						display: grid;
+						grid-template-columns: min(260px, 19vw) min(260px, 19vw) min(300px, 22vw) min(260px, 19vw) min(260px, 19vw);
+						grid-auto-rows: min(180px, 13vw);
+						align-items: center;
+						justify-items: center;
+						width: fit-content;
+						margin: 0 auto;
+					}
+				}
+				.circles-desktop-pos-0 { grid-column: 2; grid-row: 1; }
+				.circles-desktop-pos-1 { grid-column: 4; grid-row: 1; }
+				.circles-desktop-pos-2 { grid-column: 1; grid-row: 2; }
+				.circles-desktop-pos-3 { grid-column: 5; grid-row: 2; }
+				.circles-desktop-pos-4 { grid-column: 2; grid-row: 3; }
+				.circles-desktop-pos-5 { grid-column: 4; grid-row: 3; }
+				.circles-desktop-center {
+					grid-column: 3;
+					grid-row: 2;
+					width: min(300px, 22vw);
+					height: min(300px, 22vw);
+					border-radius: 50%;
+					overflow: hidden;
+				}
+				.circles-desktop-item {
+					width: min(260px, 19vw);
+					height: min(260px, 19vw);
+					border-radius: 50%;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					padding: 28px;
+					text-align: center;
+					overflow: hidden;
+					border: 2px solid rgba(255, 255, 255, 0.3);
+					transition: background-color 0.3s ease, border-color 0.3s ease;
+				}
+				.circles-desktop-item:hover {
+					background-color: var(--hover-colour);
+					border-color: transparent;
+				}
+				.circles-desktop-item .circles-section-service-heading {
+					color: white;
+					font-size: 15px;
+					line-height: 1.3;
+				}
+				.circles-desktop-item .circles-section-service-description,
+				.circles-desktop-item .circles-section-service-description p {
+					color: white;
+					font-size: 12px;
+					line-height: 1.4;
+				}
+				.circles-desktop-icon {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+				.circles-desktop-icon.icon-hover {
+					display: none;
+				}
+				.circles-desktop-item.has-hover-icon:hover .icon-default {
+					display: none;
+				}
+				.circles-desktop-item.has-hover-icon:hover .icon-hover {
+					display: flex;
 				}
 			`}</style>
 			{customCss && <style>{`${customCss}`}</style>}
