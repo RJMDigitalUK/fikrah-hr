@@ -152,21 +152,40 @@ const Footer = () => {
 				)}
 
 				{/* Two-column Row: left=lead magnet + page links, right=newsletter */}
-				<Row className="justify-content-between align-items-start align-items-md-center justify-content-md-center text-md-center mb-4">
+				<Row className="justify-content-between align-items-start align-items-md-center justify-content-md-center text-md-center">
 					{/* Left column: split into two nested columns for lead magnet and page links */}
-					<Col xs={12} xl={6} className="mb-3">
+					<Col xs={12} xl={6} className="">
 						<Row>
+							<Col xs={6} md={12} className="mb-5 mb-md-0 ">
+								{pageLinks1 && pageLinks1.length > 0 && (
+									<>
+										<ul className="list-unstyled list-unstyled d-md-flex flex-md-row flex-md-wrap align-items-center justify-content-md-center">
+											{pageLinks1.map((item, idx) => (
+												<li key={idx} className="mb-2 mb-md-0 me-md-4 pb-xl-4">
+													<Link
+														to={item.link.url || "/"}
+														className="page-link-footer"
+														style={{ color: textColour, textDecoration: 'none' }}
+													>
+														{item.link.title}
+														</Link>
+													</li>
+											))}
+										</ul>
+									</>
+								)}
+							</Col>
 							{/* Lead Magnet Links (nested col) */}
-							<Col xs={6} md={12} className="mb-3">
+							<Col xs={6} md={12} className="">
 								{pageLinks2 && pageLinks2.length > 0 && (
 									<>
-										<ul className="list-unstyled d-md-flex flex-md-row flex-md-wrap align-items-center justify-content-md-center">
+										<ul className="list-unstyled d-md-flex flex-md-row flex-md-wrap align-items-center justify-content-md-center text-decoration-none">
 											{pageLinks2.map((item, idx) => (
 												<li key={idx} className="mb-2 mb-md-0 me-md-4">
 													<Link
 														to={item.link.url}
 														className="leadmagnet-link-footer"
-														style={{ color: textColour }}
+														style={{ color: textColour, textDecoration: 'none' }}
 													>
 														{item.link.title}
 														</Link>
@@ -178,25 +197,7 @@ const Footer = () => {
 							</Col>
 
 							{/* Page Links (nested col) */}
-							<Col xs={6} md={12} className="mb-5 ">
-								{pageLinks1 && pageLinks1.length > 0 && (
-									<>
-										<ul className="list-unstyled list-unstyled d-md-flex flex-md-row flex-md-wrap align-items-center justify-content-md-center">
-											{pageLinks1.map((item, idx) => (
-												<li key={idx} className="mb-2 mb-md-0 me-md-4 pb-xl-4">
-													<Link
-														to={item.link.url || "/"}
-														className="page-link-footer"
-														style={{ color: textColour}}
-													>
-														{item.link.title}
-														</Link>
-													</li>
-											))}
-										</ul>
-									</>
-								)}
-							</Col>
+							
 						</Row>
 					</Col>
 					<hr id="footer-hr" style={{ borderColor: textColour || "#FFFFFF", height: "2px" }} className="d-lg-none" />
@@ -255,6 +256,27 @@ const Footer = () => {
 						</small>
 					</Col>
 				</Row>
+
+				{/* Built by Row */}
+				<Row className="mt-4">
+					<Col xs={12} className="text-center">
+						<a
+							href="https://www.mativus.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="built-by-link d-inline-flex align-items-center gap-2"
+							style={{ textDecoration: 'none', color: textColour, fontSize: '14px', fontFamily: "'AmpleSoftPro', sans-serif", fontWeight: 400, opacity: 0.7 }}
+						>
+							Website built by
+							<StaticImage
+								src="../images/Mativus Logo White.png"
+								alt="Mativus"
+								height={25}
+								placeholder="none"
+							/>
+						</a>
+					</Col>
+				</Row>
 			</Container>
 
 			{/* Inline CSS for footer styling */}
@@ -265,6 +287,13 @@ const Footer = () => {
 			color: ${ctaButtonTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
 		}
 		
+		.page-link-footer,
+		.leadmagnet-link-footer {
+			font-size: 14px;
+			font-family: 'AmpleSoftPro', sans-serif;
+			font-weight: 400;
+		}
+
 		.newsletter-disclaimer-text a:hover,
 		.page-link-footer:hover,
 		.leadmagnet-link-footer:hover {

@@ -34,7 +34,7 @@ const CoachBioSection = ({
 				<Row className="align-items-center">
 					
 					<Col xs={12} md={12} lg={9} xl={7} className="pe-xl-7 order-2 order-lg-1 ps-xl-0">
-						<div className="mx-auto mx-md-5 mx-xl-0 mt-4 mt-xl-0">
+						<div className="mx-auto mx-md-0 mx-xl-0 mt-4 mt-xl-0">
 							{subheadingAbove && (
 								<p
 									className="coach-bio-subheading-above mb-2"

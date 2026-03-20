@@ -70,7 +70,7 @@ const BlogCta = ({
 					to={secondaryCta?.url}
 					className="blogcta-secondary-cta secondary-cta w-100 mb-3 px-3 py-3"
 					style={{
-						...(secondaryCtaColour && { backgroundColor: secondaryCtaColour, borderColor: secondaryCtaColour }),
+						...(secondaryCtaColour && { backgroundColor: secondaryCtaColour, borderColor: secondaryCtaColour, borderRadius: '100px'	 }),
 						...(secondaryCtaTextColour && { color: secondaryCtaTextColour })
 					}}
 				>

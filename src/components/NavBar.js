@@ -200,13 +200,11 @@ const NavBar = ({ hideLinks }) => {
 												to={navbar.secondaryCta.url.startsWith('/') ? navbar.secondaryCta.url : undefined}
 												href={navbar.secondaryCta.url.startsWith('/') ? undefined : navbar.secondaryCta.url}
 												target={navbar.secondaryCta.target || (navbar.secondaryCta.url.startsWith('/') ? undefined : '_blank')}
-	
 												className="navbar-secondary-cta py-2 px-3"
 												style={{ 
 													background: navbar.secondaryCtaColour,
-													color: navbar.secondaryCtaTextColour
-													
-											
+													color: navbar.secondaryCtaTextColour,
+													borderColor: navbar.secondaryCtaColour
 												}}
 											>
 												{navbar.secondaryCta.title}
@@ -221,13 +219,12 @@ const NavBar = ({ hideLinks }) => {
 												href={navbar.primaryCta.url.startsWith('/') ? undefined : navbar.primaryCta.url}
 												target={navbar.primaryCta.target || (navbar.primaryCta.url.startsWith('/') ? undefined : '_blank')}
 												variant="primary"
-											className="navbar-primary-cta text-nowrap py-2 px-3"
+												className="navbar-primary-cta text-nowrap py-2 px-3 me-xl-2"
 												style={{ 
 													backgroundColor: navbar.primaryCtaColour,
 													borderColor: navbar.primaryCtaColour,
 													color: navbar.primaryCtaTextColour,
 													fontSize: '1rem',
-											
 												}}
 											>
 												{navbar.primaryCta.title}
@@ -248,7 +245,8 @@ const NavBar = ({ hideLinks }) => {
 												className="navbar-secondary-cta w-100 py-2 px-3"
 													style={{ 
 														backgroundColor: navbar.secondaryCtaColour,
-														color: navbar.secondaryCtaTextColour												
+														color: navbar.secondaryCtaTextColour,
+														borderColor: navbar.secondaryCtaColour												
 													}}
 												>
 													{navbar.secondaryCta.title}
@@ -301,6 +299,7 @@ const NavBar = ({ hideLinks }) => {
 			.navbar-secondary-cta:hover {
 				background-color: ${navbar?.secondaryCtaHoverColour || 'var(--secondary-cta-hover-colour)'} !important;
 				color: ${navbar?.secondaryCtaTextHoverColour || 'var(--secondary-cta-hover-text-colour)'} !important;
+				border-color: ${navbar?.secondaryCtaHoverColour || 'var(--secondary-cta-hover-colour)'} !important;
 			}
 		`}</style>
 		<style>{`${navbar.customCss}`}</style>

@@ -92,7 +92,9 @@ const PostTemplate = ({ data: { wpPage, site, wpComponentThemeSettings } }) => {
 				}}
 			/>
 			<Header1 heading={wpPage.title} backgroundImage={wpPage.postBannerFields?.featuredImage} frameFullHeight={true} headingTextColour={wpComponentThemeSettings.themeSettings.blogPostHeadingTextColour}/>
-			<PageBreak keyBenefits={wpPage.postBannerFields.keyBenefits} backgroundColour={wpComponentThemeSettings.themeSettings.keyBenefitsBackgroundColour} keyBenefitsTextColour={wpComponentThemeSettings.themeSettings.keyBenefitsTextColour} customCss={wpComponentThemeSettings.themeSettings.customCss}/>
+			{wpPage.postBannerFields?.keyBenefits?.length > 0 && (
+				<PageBreak keyBenefits={wpPage.postBannerFields.keyBenefits} backgroundColour={wpComponentThemeSettings.themeSettings.keyBenefitsBackgroundColour} keyBenefitsTextColour={wpComponentThemeSettings.themeSettings.keyBenefitsTextColour} customCss={wpComponentThemeSettings.themeSettings.customCss}/>
+			)}
 			<section className="pt-5 pb-0 py-lg-7" style={{backgroundColor: wpComponentThemeSettings.themeSettings.blogPostBackgroundColour}}>
 				<Container>
 					<StickyContainer>

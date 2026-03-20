@@ -104,37 +104,21 @@ const BlogCarousel = () => {
 	return (
 		<section className="blogcarousel-section blog-carousel-section py-5" style={{backgroundColor: themeSettings.blogPageBackgroundColour}}>
 			<Container fluid="lg" className="blogcarousel-content-container">
-				<h2 
+				{/* <h2 
 					className="blogcarousel-heading mb-4"
 					style={themeSettings?.blogCarouselHeadingTextColour ? { color: themeSettings.blogCarouselHeadingTextColour } : {}}
 				>
 					Latest blog posts
-				</h2>
+				</h2> */}
 
 				<div className="blogcarousel-wrapper carousel-wrapper position-relative">
 					{showLeftArrow && (
-						<Button
-							variant="light"
-							className="carousel-arrow carousel-arrow-left position-absolute d-none d-lg-flex"
+						<button
+							className="carousel-arrow carousel-arrow-left position-absolute"
 							onClick={scrollLeft}
-							style={{
-								top: '50%',
-								left: '-20px',
-								transform: 'translateY(-50%)',
-								zIndex: 10,
-								width: '40px',
-								height: '40px',
-								borderRadius: '50%',
-								padding: 0,
-								boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-								border: 'none',
-								display: 'flex',
-								alignItems: 'center',
-								justifyContent: 'center',
-							}}
 						>
-							<FaChevronLeft />
-						</Button>
+							<FaChevronLeft color="#292D65" size={16} />
+						</button>
 					)}
 
 					<div
@@ -158,8 +142,9 @@ const BlogCarousel = () => {
 									className="blogcarousel-card carousel-card"
 								>
 									<Card 
-										className="blogcarousel-card-inner h-100 border-0 shadow-sm" 
+										className="blogcarousel-card-inner h-100" 
 										style={{ 
+											border: '1px solid #7CB6E4',
 											...(themeSettings?.blogCardBackgroundColour && { backgroundColor: themeSettings.blogCardBackgroundColour })
 										}}
 									>
@@ -218,28 +203,12 @@ const BlogCarousel = () => {
 					</div>
 
 					{showRightArrow && (
-						<Button
-							variant="light"
-							className="carousel-arrow carousel-arrow-right position-absolute d-none d-lg-flex"
+						<button
+							className="carousel-arrow carousel-arrow-right position-absolute"
 							onClick={scrollRight}
-							style={{
-								top: '50%',
-								right: '-20px',
-								transform: 'translateY(-50%)',
-								zIndex: 10,
-								width: '40px',
-								height: '40px',
-								borderRadius: '50%',
-								padding: 0,
-								boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-								border: 'none',
-								display: 'flex',
-								alignItems: 'center',
-								justifyContent: 'center',
-							}}
 						>
-							<FaChevronRight />
-						</Button>
+							<FaChevronRight color="#292D65" size={16} />
+						</button>
 					)}
 				</div>
 
@@ -305,10 +274,42 @@ const BlogCarousel = () => {
 						text-transform: uppercase;
 					}
 					
-					.carousel-arrow:hover {
-						background-color: #f8f9fa !important;
-						transform: translateY(-50%) scale(1.1);
-						transition: all 0.2s ease;
+					.carousel-arrow {
+							display: none;
+							width: 40px;
+							height: 40px;
+							min-width: 40px;
+							border-radius: 50%;
+							padding: 0;
+							background-color: #ffffff;
+							border: 2px solid #292D65;
+							cursor: pointer;
+							align-items: center;
+							justify-content: center;
+							transition: all 0.2s ease;
+						}
+						.carousel-arrow-left {
+							top: 50%;
+							left: -20px;
+							transform: translateY(-50%);
+							z-index: 10;
+						}
+						.carousel-arrow-right {
+							top: 50%;
+							right: -20px;
+							transform: translateY(-50%);
+							z-index: 10;
+						}
+						@media (min-width: 992px) {
+							.carousel-arrow { display: flex !important; }
+						}
+						.carousel-arrow:hover {
+							background-color: #292D65 !important;
+							border-color: #292D65 !important;
+					}
+					.carousel-arrow:hover svg {
+						fill: #ffffff !important;
+						color: #ffffff !important;
 					}
 				`}</style>
 			</Container>
