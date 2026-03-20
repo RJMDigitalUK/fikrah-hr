@@ -33,12 +33,10 @@ const FaqSection = ({
 							)}
 					{description && (
 								<div className="faq-text  mb-5" style={{color: descriptionColour}}>								
-									{description}
+									<SafeHtmlParser htmlContent={description} />
 								</div>
 							)}
-					{subheadingDescription && (
-								<p className="faq-subheading-description mb-5" style={{ color: subheadingDescriptionColour }}>{subheadingDescription}</p>
-							)}
+					
                         
 					</Col>
 				</Row>
@@ -57,12 +55,12 @@ const FaqSection = ({
 												<Card.Body>
 													<Card.Title 
 										className="pb-3"
-										style={{ color: faq.faqFields?.questionTextColour }}
+										style={{ color: "#292d65"}}
 									>
 										{faq.faqFields?.question}
 									</Card.Title>
 													{faq.faqFields?.answer && (
-														<div className="faq-answer preview mt-2" style={{ color: faq.faqFields?.answerTextColour }}>
+														<div className="faq-answer preview mt-2" style={{ color: "#43454B" }}>
 															<SafeHtmlParser htmlContent={faq.faqFields?.answer} />
 														</div>
 													)}
@@ -82,6 +80,9 @@ const FaqSection = ({
 						<div className="faq-header text-xl-start">
 							{subheading && (
 								<h3 className="faq-subheading" style={{ color: subheadingColour }}>{subheading}</h3>
+							)}
+							{subheadingDescription && (
+								<div className="faq--description mb-5" style={{ color: subheadingDescriptionColour }}><SafeHtmlParser htmlContent={subheadingDescription} /></div>
 							)}
 						</div>
 							<Button 
