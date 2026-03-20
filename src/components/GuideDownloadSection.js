@@ -117,20 +117,20 @@ const GuideDownloadSection = ({
 													<div className="guidedownload-bullet-icon-container flex-shrink-0 me-3">
 														<div
 															className="d-flex align-items-center justify-content-center"
-															style={{ width: '40px', height: '40px' }}
+															style={{ width: '12px', height: '12px' }}
 														>
 															{iconImage ? (
 																<GatsbyImage
 																	image={iconImage}
 																	alt={point.icon?.altText || 'Bullet point icon'}
-																	style={{ width: 24, height: 24 }}
+																	style={{ width: 12, height: 12 }}
 																	imgStyle={{ objectFit: 'contain' }}
 																/>
 															) : imgSrc ? (
 																<img
 																	src={imgSrc}
 																	alt={point.icon?.altText || 'Bullet point icon'}
-																	style={{ width: 24, height: 24, objectFit: 'contain', display: 'block' }}
+																	style={{ width: 12, height: 12, objectFit: 'contain', display: 'block' }}
 																/>
 															) : null}
 														</div>
