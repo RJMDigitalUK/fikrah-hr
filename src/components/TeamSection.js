@@ -27,7 +27,7 @@ const TeamSection = ({
 		>
 			<Container className="team-section-content-container">
 				{(heading || description) && (
-					<Row className="justify-content-center text-center mb-5">
+					<Row className="justify-content-start text-start mb-5">
 						<Col xs={12} lg={8}>
 							{heading && (
 								<h2
@@ -55,7 +55,7 @@ const TeamSection = ({
 							const memberImage = getImage(member.image?.localFile);
 
 							return (
-								<Col xs={12} sm={6} lg={4} key={index}>
+								<Col xs={12} xl={6} key={index}>
 									<div className="team-section-member h-100 text-center">
 										{memberImage && (
 											<div className="team-section-member-image-container mb-3">
@@ -68,7 +68,7 @@ const TeamSection = ({
 										)}
 										{member.name && (
 											<h3
-												className="team-section-member-name mb-1"
+												className="team-section-member-name mb-1 text-start"
 												style={{ color: member.nameTextColour }}
 											>
 												{member.name}
@@ -76,7 +76,7 @@ const TeamSection = ({
 										)}
 										{member.role && (
 											<p
-												className="team-section-member-role mb-2"
+												className="team-section-member-role mb-2 text-start"
 												style={{ color: member.roleTextColour }}
 											>
 												{member.role}
@@ -84,14 +84,14 @@ const TeamSection = ({
 										)}
 										{member.bio && (
 											<div
-												className="team-section-member-bio mb-3"
+												className="team-section-member-bio mb-3 text-start"
 												style={{ color: member.bioTextColour }}
 											>
 												<SafeHtmlParser htmlContent={member.bio} />
 											</div>
 										)}
 										{member.socials && member.socials.length > 0 && (
-											<div className="team-section-member-socials d-flex justify-content-center gap-2">
+											<div className="team-section-member-socials d-flex justify-content-start gap-2">
 												{member.socials.map((social, sIdx) => {
 													const socialIconImage = getImage(social.socialsIcon?.localFile);
 													const socialIconSrc = social.socialsIcon?.localFile?.publicURL || social.socialsIcon?.sourceUrl;
