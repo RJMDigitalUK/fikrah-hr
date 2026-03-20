@@ -421,6 +421,7 @@ export const query = graphql`
 					}
 					... on WpPage_Pagefields_Components_CoachBioSection {
 						backgroundColour
+						sectionLayout
 						image {
 							altText
 							sourceUrl

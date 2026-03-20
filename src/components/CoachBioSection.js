@@ -6,6 +6,7 @@ import { Link } from "gatsby";
 
 const CoachBioSection = ({
 	backgroundColour,
+	sectionLayout,
 	image,
 	subheadingAbove,
 	heading,
@@ -33,7 +34,7 @@ const CoachBioSection = ({
 			<Container>
 				<Row className="align-items-center">
 					
-					<Col xs={12} md={12} lg={9} xl={7} className="pe-xl-7 order-2 order-lg-1 ps-xl-0">
+					<Col xs={12} md={12} lg={9} xl={7} className={`pe-xl-7 ps-xl-0 ${sectionLayout ? 'order-1 order-lg-1' : 'order-2 order-lg-1'}`}>
 						<div className="mx-auto mx-md-0 mx-xl-0 mt-4 mt-xl-0">
 							{subheadingAbove && (
 								<p
@@ -102,7 +103,7 @@ const CoachBioSection = ({
 							)}
 						</div>
 					</Col>
-					<Col xs={12} md={12} lg={3} xl={5} className="order-1 order-lg-2 px-md-9 py-md-3 px-lg-0 py-lg-0">
+					<Col xs={12} md={12} lg={3} xl={5} className={`px-md-9 py-md-3 px-lg-0 py-lg-0 ${sectionLayout ? 'order-2 order-lg-2' : 'order-1 order-lg-2'}`}>
 						{bioImage && (
 							<GatsbyImage
 								image={bioImage}
