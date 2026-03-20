@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, ProgressBar } from "react-bootstrap";
 import { SafeHtmlParser } from "./SafeHtmlParser";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -12,6 +12,7 @@ const QuizResults = ({
 	totalQuestions,
 	scorecardAssessments,
 	discoveryCallIframe,
+	groupedScores,
 	primaryColour,
 	secondaryColour,
 	primaryTextColour,
@@ -74,11 +75,6 @@ const QuizResults = ({
 
 						{matchedAssessment ? (
 							<>
-								
-								
-							<h3 className="mb-md-4" style={{color: secondaryTextColour}}>Your Score: {score}</h3>
-					
-
 								{matchedAssessment.insight && (
 									<div className="mb-4">
 										<h4 className="">Insight:</h4>
@@ -101,6 +97,46 @@ const QuizResults = ({
 							</div>
 						)}
 						</Col>
+
+						{groupedScores?.pillarOrder?.length > 0 && (
+							<Col xs={12} lg={10} className="mt-4">
+								<h4 className="mb-4" style={{ color: primaryColour }}>Score by Pillar</h4>
+								{groupedScores.pillarOrder.map(pillar => {
+									const pillarData = groupedScores.groups[pillar];
+									const pillarPct = pillarData.max > 0 ? Math.round((pillarData.total / pillarData.max) * 100) : 0;
+									return (
+										<div key={pillar} className="mb-4">
+											<div className="d-flex justify-content-between align-items-center mb-1">
+												<h5 className="mb-0" style={{ color: primaryColour }}>{pillar}</h5>
+												<span className="fw-bold" style={{ color: primaryColour }}>{pillarData.total} / {pillarData.max}</span>
+											</div>
+											<ProgressBar
+												now={pillarPct}
+												className="mb-3"
+												style={{ '--bs-progress-bar-bg': primaryColour, height: '10px' }}
+											/>
+											{pillarData.subPillarOrder.map(subPillar => {
+												const spData = pillarData.subPillars[subPillar];
+												const spPct = spData.max > 0 ? Math.round((spData.total / spData.max) * 100) : 0;
+												return (
+													<div key={subPillar} className="ms-3 mb-3">
+														<div className="d-flex justify-content-between align-items-center mb-1">
+															<small className="text-muted">{subPillar}</small>
+															<small className="text-muted">{spData.total} / {spData.max}</small>
+														</div>
+														<ProgressBar
+															now={spPct}
+															style={{ '--bs-progress-bar-bg': secondaryColour, height: '6px' }}
+														/>
+													</div>
+												);
+											})}
+										</div>
+									);
+								})}
+							</Col>
+						)}
+
 						<Col xs={12} lg={10} className="mt-4 mt-md-5">
 						<h2 className="text-center text-primary">LET'S TALK ABOUT YOUR RESULTS</h2>
 						<p className="text-center mb-md-4"><strong>Book your time slot below</strong></p>
