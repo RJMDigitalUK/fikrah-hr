@@ -1146,6 +1146,7 @@ export const query = graphql`
 						bodyTextColour
 						playButtonColour
 						playButtonTextColour
+						rssFeed
 					}
 				}
 			}
