@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { SafeHtmlParser } from "./SafeHtmlParser";
 
@@ -137,7 +138,12 @@ const LeadMagnetBanner1 = ({
 							{hideInputFields && cta && cta.title && (
 								<div className="my-3 mx-auto text-center">
 									<Button 
-						className="btn-primary leadmagnet1-cta-button px-3 py-3"
+										as={cta.url?.startsWith('/') ? Link : 'a'}
+										to={cta.url?.startsWith('/') ? cta.url : undefined}
+										href={cta.url?.startsWith('/') ? undefined : cta.url}
+										target={cta.target || (cta.url?.startsWith('/') ? undefined : '_blank')}
+										className="btn-primary leadmagnet1-cta-button px-3 py-3"
+										style={{color: ctaButtonTextColour, backgroundColor: ctaButtonColour}}
 									>
 										{cta.title}
 									</Button>

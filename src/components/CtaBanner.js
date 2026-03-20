@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { SafeHtmlParser } from "./SafeHtmlParser";
 
@@ -67,6 +68,10 @@ const CtaBanner = ({
 									<div className="cta-banner-buttons py-3">
 											{primaryCta && primaryCta.title && (
 											<Button 
+												as={primaryCta.url?.startsWith('/') ? Link : 'a'}
+												to={primaryCta.url?.startsWith('/') ? primaryCta.url : undefined}
+												href={primaryCta.url?.startsWith('/') ? undefined : primaryCta.url}
+												target={primaryCta.target || (primaryCta.url?.startsWith('/') ? undefined : '_blank')}
 								className="ctabanner-primary-cta btn-primary py-3 px-3 w-100 w-md-auto me-3 mb-3 mb-md-0"
 												style={{color: primaryCtaButtonTextColour, background: primaryCtaButtonColour, borderColor: primaryCtaButtonColour}}
 											>
@@ -76,6 +81,10 @@ const CtaBanner = ({
 									
 										{secondaryCta && secondaryCta.title && (
 											<Button 
+												as={secondaryCta.url?.startsWith('/') ? Link : 'a'}
+												to={secondaryCta.url?.startsWith('/') ? secondaryCta.url : undefined}
+												href={secondaryCta.url?.startsWith('/') ? undefined : secondaryCta.url}
+												target={secondaryCta.target || (secondaryCta.url?.startsWith('/') ? undefined : '_blank')}
 									className="ctabanner-secondary-cta cta-secondary px-3 py-3  w-100 w-md-auto"
 												style={{color: secondaryCtaButtonTextColour, background: secondaryCtaButtonColour, borderColor: secondaryCtaButtonColour}}
 											>
