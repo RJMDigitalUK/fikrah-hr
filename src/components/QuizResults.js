@@ -75,11 +75,6 @@ const QuizResults = ({
 
 						{matchedAssessment ? (
 							<>
-								
-								
-							<h3 className="mb-md-4" style={{color: secondaryTextColour}}>Your Score: {score}</h3>
-					
-
 								{matchedAssessment.insight && (
 									<div className="mb-4">
 										<h4 className="">Insight:</h4>
