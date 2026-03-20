@@ -32,7 +32,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
             <div className="position-relative d-flex d-md-block align-items-center py-2 py-md-2 px-md-1 mb-3 rounded-start-3 rounded-top-3 h-md-100 w-lg-75 mx-lg-auto" style={{background: secondaryColour, color: secondaryTextColour}}>
                 {icon && (
                     <div 
-                        className="quiz-benefit-icon ms-3 me-3 d-flex justify-content-center align-items-center"
+                        className="quiz-benefit-icon ms-3 me-3 mx-md-0 d-flex justify-content-center align-items-center"
                         style={isDesktop ? {
                             position: 'absolute',
                             top: '0',
@@ -53,7 +53,7 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
                 )}
                 {!icon && benefit?.icon?.sourceUrl && (
                     <div 
-                        className="quiz-benefit-icon ms-3 me-3 d-flex justify-content-center align-items-center"
+                        className="quiz-benefit-icon ms-3 me-3 mx-md-0 d-flex justify-content-center align-items-center"
                         style={isDesktop ? {
                             position: 'absolute',
                             top: '0',
