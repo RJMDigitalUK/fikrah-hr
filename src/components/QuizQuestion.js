@@ -69,39 +69,44 @@ const QuizQuestion = ({
 								onChange={(e) => onChange(parseFloat(e.target.value))}
 							/>
 						</Form.Group>
-			</div>
-			);
+						{(question.minLabel || question.maxLabel) && (
+							<div className="d-flex justify-content-between mt-1">
+								<small className="text-muted" style={{ maxWidth: '45%' }}>{question.minLabel}</small>
+								<small className="text-muted text-end" style={{ maxWidth: '45%' }}>{question.maxLabel}</small>
+							</div>
+						)}
+					</div>
+				);
 
-		case 'true_false':
-			return (
-				<div className="d-grid gap-3 px-5">
-					<Button
-						variant={answer === true ? "primary" : "outline-primary"}
-						onClick={() => onChange(true)}
-						className="py-3 rounded-5 mb-md-3"
-						  style={answer === true ? {
-        background: primaryColour, 
-        color: primaryTextColour,
-        borderColor: primaryColour
-    } : {}}
-						
-					>
-						{question.labelTrue || "True"}
-					</Button>
-					<Button
-						variant={answer === false ? "primary" : "outline-primary"}
-						onClick={() => onChange(false)}
-						className="py-3 rounded-5"		
-						  style={answer === false ? {
-        background: primaryColour, 
-        color: primaryTextColour,
-        borderColor: primaryColour
-    } : {}}				
-					>
-						{question.labelFalse || "False"}
-					</Button>
-				</div>
-			);			default:
+			case 'true_false':
+				return (
+					<div className="d-grid gap-3">
+						<Button
+							variant={answer === true ? "primary" : "outline-primary"}
+							onClick={() => onChange(true)}
+							className="py-3 rounded-5"
+							style={answer === true ? {
+								background: primaryColour,
+								color: primaryTextColour,
+								borderColor: primaryColour
+							} : {}}
+						>
+							{question.labelTrue || "True"}
+						</Button>
+						<Button
+							variant={answer === false ? "primary" : "outline-primary"}
+							onClick={() => onChange(false)}
+							className="py-3 rounded-5"
+							style={answer === false ? {
+								background: primaryColour,
+								color: primaryTextColour,
+								borderColor: primaryColour
+							} : {}}
+						>
+							{question.labelFalse || "False"}
+						</Button>
+					</div>
+				);			default:
 				return <p>Unknown question type</p>;
 		}
 	};
