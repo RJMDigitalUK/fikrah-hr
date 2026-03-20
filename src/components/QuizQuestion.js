@@ -49,6 +49,7 @@ const QuizQuestion = ({
 								}
 								onChange={() => handleMultipleChoiceChange(index)}
 								className="mb-3 py-3"
+								style={{ accentColor: secondaryColour }}
 							/>
 						))}
 					</div>
@@ -57,6 +58,11 @@ const QuizQuestion = ({
 			case 'scale_0_10':
 				return (
 					<div>
+						<style>{`
+							.quiz-range-input::-webkit-slider-thumb { background-color: ${secondaryColour} !important; }
+							.quiz-range-input::-moz-range-thumb { background-color: ${secondaryColour} !important; }
+							.quiz-range-input::-webkit-slider-runnable-track { background-color: ${secondaryColour}40 !important; }
+						`}</style>
 						<Form.Group>
 							<Form.Label>
 								Selected value: {answer !== undefined ? answer : question.minValue || 0}
@@ -67,6 +73,7 @@ const QuizQuestion = ({
 								step={question.step || 1}
 								value={answer !== undefined ? answer : question.minValue || 0}
 								onChange={(e) => onChange(parseFloat(e.target.value))}
+								className="quiz-range-input"
 							/>
 						</Form.Group>
 						{(question.minLabel || question.maxLabel) && (
@@ -125,8 +132,8 @@ const QuizQuestion = ({
 					</p>
 					<ProgressBar 
 						now={progress} 
-
 						className="mb-0"
+						style={{ '--bs-progress-bar-bg': secondaryColour }}
 					/>
 				</Col>
 					<Col xs={12} lg={8} className="px-1 px-md-0">
