@@ -29,15 +29,18 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
     const icon = getImage(benefit?.icon?.localFile);
     return (
         <Col xs={12} md={4} key={index}>
-            <div className="position-relative d-flex d-md-block align-items-center py-2 py-md-2 px-md-1 mb-3 rounded-start-3 rounded-top-3 h-md-100 w-lg-75 mx-lg-auto" style={{background: secondaryColour, color: secondaryTextColour}}>
+            <div className="position-relative d-flex d-md-block align-items-center py-2 pt-md-5 pb-md-2 px-md-1 mb-3 rounded-start-3 rounded-top-3 h-md-100 w-lg-75 mx-lg-auto" style={{background: secondaryColour, color: secondaryTextColour}}>
                 {icon && (
                     <div 
                         className="quiz-benefit-icon ms-3 me-3 mx-md-0 d-flex justify-content-center align-items-center"
                         style={isDesktop ? {
                             position: 'absolute',
                             top: '0',
-                            left: '50%',
-                            transform: 'translateX(-50%) translateY(-50%)'
+                            left: '0',
+                            right: '0',
+                            margin: 'auto',
+                            width: '80px',
+                            transform: 'translateY(-50%)'
                         } : {}}
                     >
                         <GatsbyImage
@@ -57,10 +60,13 @@ const QuizIntro = ({ title, description, benefits, disclaimer, cta, onStart, pri
                         style={isDesktop ? {
                             position: 'absolute',
                             top: '0',
-                            left: '50%',
-                            transform: 'translateX(-50%) translateY(-50%)',
-                            maxWidth: '60px',
-                            maxHeight: '60px'
+                            left: '0',
+                            right: '0',
+                            margin: 'auto',
+                            width: '80px',
+                            transform: 'translateY(-50%)',
+                            maxWidth: '80px',
+                            maxHeight: '80px'
                         } : { maxWidth: '60px', maxHeight: '60px' }}
                     >
                         <img
