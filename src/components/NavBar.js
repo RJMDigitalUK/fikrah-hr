@@ -163,7 +163,7 @@ const NavBar = ({ hideLinks }) => {
 				expand="xl"
 				id="navbar-test"
 				className={navbar.sticky ? 'sticky-top' : ''}
-				style={getNavbarStyle()}
+				style={{ ...getNavbarStyle(), borderBottom: '1px solid #E83166' }}
 			>
 				<Container>
 					{/* Brand/Logo */}
