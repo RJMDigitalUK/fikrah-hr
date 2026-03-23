@@ -100,15 +100,7 @@ const CtaBanner = ({
 				</Row>
 			</Container>
 			<style>{`
-				.ctabanner-primary-cta:hover {
-					background-color: ${primaryCtaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
-					color: ${primaryCtaButtonTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
-				}
-				.ctabanner-secondary-cta:hover {
-					background-color: ${secondaryCtaButtonHoverColour || 'var(--secondary-cta-hover-colour)'} !important;
-					color: ${secondaryCtaButtonTextHoverColour || 'var(--secondary-cta-hover-text-colour)'} !important;
-					
-				}
+			
 			`}</style>
 			{customCss && (
 				<style>{`${customCss}`}</style>

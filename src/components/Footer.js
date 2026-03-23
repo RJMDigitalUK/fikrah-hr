@@ -305,6 +305,12 @@ const Footer = () => {
 				border-color: #FFFFFF;
 			}
 
+			
+
+			.social-icons a:hover img {
+				filter: brightness(0) saturate(100%) invert(25%) sepia(85%) saturate(3500%) hue-rotate(322deg) brightness(103%) contrast(98%);
+			}
+
 			@media (min-width: 1200px) {
 				.footer-page-links { border-left: 1px solid var(--footer-border-color); padding-left: 1.25rem; }
 			}		
