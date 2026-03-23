@@ -90,7 +90,7 @@ const CoachBioSection = ({
 											href={!secondaryCta.url.startsWith('/') ? secondaryCta.url : undefined}
 											target={secondaryCta.target || '_self'}
 											variant="btn-link"
-											className="coach-bio-secondary-cta-button p-0 text-decoration-none d-inline-flex align-items-center justify-content-center"
+											className="coach-bio-secondary-cta-button mt-3 mb-5 mt-md-0 mb-md-0 p-0 text-decoration-none d-inline-flex align-items-center justify-content-center"
 											style={{ color: secondaryCtaTextColour }}
 										>
 											{secondaryCta.title}
@@ -103,7 +103,7 @@ const CoachBioSection = ({
 							)}
 						</div>
 					</Col>
-					<Col xs={12} md={12} lg={3} xl={5} className={`px-md-9 py-md-3 px-lg-0 py-lg-0 ${sectionLayout ? 'order-2' : 'order-1'}`}>
+					<Col xs={12} md={12} lg={3} xl={5} className={`px-md-9 py-md-3 px-lg-0 py-lg-0 mt-md-4 mt-lg-0 ${sectionLayout ? 'order-2' : 'order-1'}`}>
 						{bioImage && (
 							<GatsbyImage
 								image={bioImage}

@@ -27,7 +27,7 @@ const CardsSection = ({
 	return (
 		<section className="cards-section py-5 py-lg-7">
 			<Container className="cards-section-content-container">
-				<Row className="justify-content-center text-center mb-5">
+				<Row className="justify-content-center text-center mb-0">
 					<Col xs={12} lg={8}>
 						{heading && (
 							<h2
@@ -94,7 +94,7 @@ const CardsSection = ({
 								</div>
 							);
 						})()}
-						<div className="d-flex justify-content-between align-items-center mt-3 px-2">
+						<div className="d-flex justify-content-between align-items-center mt-5 px-2">
 							<div className="d-flex gap-2">
 								{card.map((_, i) => (
 									<button
@@ -194,7 +194,7 @@ const CardsSection = ({
 									href={!primaryCtaButton.url.startsWith('/') ? primaryCtaButton.url : undefined}
 									target={primaryCtaButton.target || '_self'}
 									variant="primary"
-									className="cards-section-primary-cta-button btn-primary py-3 px-4"
+									className="cards-section-primary-cta-button btn-primary py-3 px-4 mb-3 mb-md-0"
 									style={{
 										...(primaryCtaButtonColour && { backgroundColor: primaryCtaButtonColour, borderColor: primaryCtaButtonColour }),
 										...(primaryCtaTextColour && { color: primaryCtaTextColour }),
@@ -210,7 +210,7 @@ const CardsSection = ({
 									href={!secondaryCta.url.startsWith('/') ? secondaryCta.url : undefined}
 									target={secondaryCta.target || '_self'}
 									variant="btn-link"
-									className="cards-section-secondary-cta-button p-0 text-decoration-none d-inline-flex align-items-center"
+									className="cards-section-secondary-cta-button p-0 text-decoration-none d-inline-flex align-items-center w-100 w-md-auto justify-content-center justify-content-md-start"
 									style={{ color: secondaryCtaTextColour }}
 								>
 									{secondaryCta.title}
