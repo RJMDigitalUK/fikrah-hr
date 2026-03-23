@@ -223,33 +223,6 @@ const QuizTemplate = ({ data: { wpQuiz, site } }) => {
 		sub_pillar: question.subPillar || null
 	}));
 
-	// Prepare pillar scores array for webhook
-	const buildPillarScoresArray = () => {
-		const { groups, pillarOrder } = calculateGroupedScores();
-		return pillarOrder.map(pillar => {
-			const pillarData = groups[pillar];
-			const entry = {
-				pillar,
-				score: pillarData.total,
-				max: pillarData.max,
-				percentage: pillarData.max > 0 ? Math.round((pillarData.total / pillarData.max) * 100) : 0
-			};
-			if (pillarData.subPillarOrder.length > 0) {
-				entry.sub_pillars = pillarData.subPillarOrder.map(subPillar => {
-					const spData = pillarData.subPillars[subPillar];
-					return {
-						name: subPillar,
-						score: spData.total,
-						max: spData.max,
-						percentage: spData.max > 0 ? Math.round((spData.total / spData.max) * 100) : 0
-					};
-				});
-			}
-			return entry;
-		});
-	};
-	const pillarScoresArray = buildPillarScoresArray();
-
 	const calculateGroupedScores = () => {
 		const groups = {};
 		const pillarOrder = [];
@@ -303,6 +276,33 @@ const QuizTemplate = ({ data: { wpQuiz, site } }) => {
 
 		return { groups, pillarOrder };
 	};
+
+	// Prepare pillar scores array for webhook (after calculateGroupedScores to avoid TDZ error)
+	const buildPillarScoresArray = () => {
+		const { groups, pillarOrder } = calculateGroupedScores();
+		return pillarOrder.map(pillar => {
+			const pillarData = groups[pillar];
+			const entry = {
+				pillar,
+				score: pillarData.total,
+				max: pillarData.max,
+				percentage: pillarData.max > 0 ? Math.round((pillarData.total / pillarData.max) * 100) : 0
+			};
+			if (pillarData.subPillarOrder.length > 0) {
+				entry.sub_pillars = pillarData.subPillarOrder.map(subPillar => {
+					const spData = pillarData.subPillars[subPillar];
+					return {
+						name: subPillar,
+						score: spData.total,
+						max: spData.max,
+						percentage: spData.max > 0 ? Math.round((spData.total / spData.max) * 100) : 0
+					};
+				});
+			}
+			return entry;
+		});
+	};
+	const pillarScoresArray = buildPillarScoresArray();
 
 	function calculateQuestionScore(question, answer, index) {
 		if (answer === undefined || answer === null) return 0;
