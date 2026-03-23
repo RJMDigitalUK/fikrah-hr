@@ -218,8 +218,37 @@ const QuizTemplate = ({ data: { wpQuiz, site } }) => {
 	const answersArray = questions.map((question, index) => ({
 		question: question.question,
 		answer: answers[index],
-		question_score: calculateQuestionScore(question, answers[index], index)
+		question_score: calculateQuestionScore(question, answers[index], index),
+		pillar: question.pillar || null,
+		sub_pillar: question.subPillar || null
 	}));
+
+	// Prepare pillar scores array for webhook
+	const buildPillarScoresArray = () => {
+		const { groups, pillarOrder } = calculateGroupedScores();
+		return pillarOrder.map(pillar => {
+			const pillarData = groups[pillar];
+			const entry = {
+				pillar,
+				score: pillarData.total,
+				max: pillarData.max,
+				percentage: pillarData.max > 0 ? Math.round((pillarData.total / pillarData.max) * 100) : 0
+			};
+			if (pillarData.subPillarOrder.length > 0) {
+				entry.sub_pillars = pillarData.subPillarOrder.map(subPillar => {
+					const spData = pillarData.subPillars[subPillar];
+					return {
+						name: subPillar,
+						score: spData.total,
+						max: spData.max,
+						percentage: spData.max > 0 ? Math.round((spData.total / spData.max) * 100) : 0
+					};
+				});
+			}
+			return entry;
+		});
+	};
+	const pillarScoresArray = buildPillarScoresArray();
 
 	const calculateGroupedScores = () => {
 		const groups = {};
@@ -343,8 +372,7 @@ const QuizTemplate = ({ data: { wpQuiz, site } }) => {
 					quizTitle={wpQuiz.title}
 					quizSlug={wpQuiz.slug}
 					score={score}
-					answers={answersArray}
-					totalQuestions={totalQuestions}
+					answers={answersArray}				pillarScores={pillarScoresArray}					totalQuestions={totalQuestions}
 					onSuccess={handleEmailSuccess}
 					onBack={handleEmailBack}
 					primaryColour={quizFields?.primaryColour}

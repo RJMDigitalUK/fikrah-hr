@@ -7,6 +7,7 @@ const QuizEmailCapture = ({
 	quizSlug,
 	score,
 	answers,
+	pillarScores,
 	totalQuestions,
 	onSuccess,
 	onBack,
@@ -43,7 +44,8 @@ const QuizEmailCapture = ({
 						quiz_slug: quizSlug,
 						score,
 						total_questions: totalQuestions,
-						answers
+						answers,
+						pillar_scores: pillarScores || []
 					}),
 				});
 
