@@ -944,6 +944,10 @@ export const query = graphql`
 							heading
 							description
 							hoverColour
+							serviceLandingPage {
+								url
+								target
+							}
 						}
 						primaryCtaButton {
 							title

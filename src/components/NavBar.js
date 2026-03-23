@@ -193,23 +193,7 @@ const NavBar = ({ hideLinks }) => {
 							
 									{/* CTA Buttons - Desktop (side by side) */}
 									<div className="d-none d-xl-flex gap-3">
-										{/* Secondary CTA */}
-										{navbar?.secondaryCta?.url && (
-											<Button
-												as={navbar.secondaryCta.url.startsWith('/') ? Link : 'a'}
-												to={navbar.secondaryCta.url.startsWith('/') ? navbar.secondaryCta.url : undefined}
-												href={navbar.secondaryCta.url.startsWith('/') ? undefined : navbar.secondaryCta.url}
-												target={navbar.secondaryCta.target || (navbar.secondaryCta.url.startsWith('/') ? undefined : '_blank')}
-												className="navbar-secondary-cta py-2 px-3"
-												style={{ 
-													background: navbar.secondaryCtaColour,
-													color: navbar.secondaryCtaTextColour,
-													borderColor: navbar.secondaryCtaColour
-												}}
-											>
-												{navbar.secondaryCta.title}
-											</Button>
-										)}
+										
 
 										{/* Primary CTA */}
 										{navbar?.primaryCta?.url && (
@@ -228,6 +212,23 @@ const NavBar = ({ hideLinks }) => {
 												}}
 											>
 												{navbar.primaryCta.title}
+											</Button>
+										)}
+										{/* Secondary CTA */}
+										{navbar?.secondaryCta?.url && (
+											<Button
+												as={navbar.secondaryCta.url.startsWith('/') ? Link : 'a'}
+												to={navbar.secondaryCta.url.startsWith('/') ? navbar.secondaryCta.url : undefined}
+												href={navbar.secondaryCta.url.startsWith('/') ? undefined : navbar.secondaryCta.url}
+												target={navbar.secondaryCta.target || (navbar.secondaryCta.url.startsWith('/') ? undefined : '_blank')}
+												className="navbar-secondary-cta py-2 px-3"
+												style={{ 
+													background: navbar.secondaryCtaColour,
+													color: navbar.secondaryCtaTextColour,
+													borderColor: navbar.secondaryCtaColour
+												}}
+											>
+												{navbar.secondaryCta.title}
 											</Button>
 										)}
 									</div>

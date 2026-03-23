@@ -5,6 +5,25 @@ import { SafeHtmlParser } from "./SafeHtmlParser";
 import { Link } from "gatsby";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
+const ServiceLink = ({ url, target, children, style, ...props }) => {
+	if (!url) {
+		return <div style={style} {...props}>{children}</div>;
+	}
+	const isInternal = url.startsWith("/");
+	if (isInternal) {
+		return (
+			<Link to={url} target={target || "_self"} style={{ textDecoration: "none", ...style }} {...props}>
+				{children}
+			</Link>
+		);
+	}
+	return (
+		<a href={url} target={target || "_self"} rel="noopener noreferrer" style={{ textDecoration: "none", ...style }} {...props}>
+			{children}
+		</a>
+	);
+};
+
 const CirclesSection = ({
 	subheading,
 	heading,
@@ -83,7 +102,9 @@ const orbitPositionsForSix = [
 									item.iconHoverState?.altText || item.icon?.altText || "Service icon";
 
 								return (
-									<div
+									<ServiceLink
+										url={item.serviceLandingPage?.url}
+										target={item.serviceLandingPage?.target}
 										className="circles-section-mobile-card mx-auto"
 										style={{ backgroundColor: item.hoverColour }}
 									>
@@ -116,7 +137,7 @@ const orbitPositionsForSix = [
 												<SafeHtmlParser htmlContent={item.description} />
 											</div>
 										)}
-									</div>
+									</ServiceLink>
 								);
 							})()}
 
@@ -176,13 +197,13 @@ const orbitPositionsForSix = [
 											"Service icon";
 
 										return (
-											<div
-												key={offset}
-												className={`circles-peek-item${isActive ? " active" : ""}`}
-												style={isActive ? { backgroundColor: item.hoverColour } : {}}
-												onClick={() => {
-													if (!isActive) setActiveIndex(idx);
-												}}
+										<ServiceLink
+											key={offset}
+											url={isActive ? item.serviceLandingPage?.url : undefined}
+											target={item.serviceLandingPage?.target}
+											className={`circles-peek-item${isActive ? " active" : ""}`}
+											style={isActive ? { backgroundColor: item.hoverColour } : {}}
+											onClick={!isActive ? () => setActiveIndex(idx) : undefined}
 											>
 												{(displayImage || displaySrc) && (
 													<div className="circles-section-service-icon-container mb-2">
@@ -213,7 +234,7 @@ const orbitPositionsForSix = [
 														<SafeHtmlParser htmlContent={item.description} />
 													</div>
 												)}
-											</div>
+											</ServiceLink>
 										);
 									})}
 								</div>
@@ -293,7 +314,11 @@ const orbitPositionsForSix = [
 													: {})
 											}}
 										>
-											<div className="circles-orbit-item-inner">
+											<ServiceLink
+											className="circles-orbit-item-inner"
+											url={item.serviceLandingPage?.url}
+											target={item.serviceLandingPage?.target}
+										>
 												{(iconDefaultImage || iconDefaultSrc) && (
 													<div className="circles-desktop-icon icon-default mb-2">
 														{iconDefaultImage ? (
@@ -341,7 +366,7 @@ const orbitPositionsForSix = [
 														<SafeHtmlParser htmlContent={item.description} />
 													</div>
 												)}
-											</div>
+										</ServiceLink>
 										</div>
 									);
 								})}
@@ -408,6 +433,10 @@ const orbitPositionsForSix = [
 				.circles-section-service-description,
 				.circles-section-service-description p {
 					color: #292D65;
+				}
+
+				a.circles-orbit-item-inner {
+					color: white;
 				}
 
 				.circles-section-mobile-card {
@@ -489,6 +518,12 @@ const orbitPositionsForSix = [
 
 				.circles-carousel-dot.active {
 					background-color: #E83166;
+				}
+
+				.circles-section-primary-cta-button:hover,
+				.circles-section-primary-cta-button:focus {
+					background-color: #7CB6E4 !important;
+					border-color: #7CB6E4 !important;
 				}
 
 				.circles-carousel-arrow {

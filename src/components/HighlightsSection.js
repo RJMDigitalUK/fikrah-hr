@@ -271,6 +271,8 @@ const HighlightsSection = ({
 						width: 49px !important;
 						height: 49px !important;
 					}
+					.highlights-item-heading {
+						font-size: 36px !important;}
 				}
 				
 				
