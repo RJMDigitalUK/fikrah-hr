@@ -118,9 +118,9 @@ const FaqSection = ({
 				}
 
 				.faq-cta-button:hover {
-					background-color: ${ctaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
-					border-color: ${ctaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
-					color: ${ctaButtonTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
+					background-color: #E83166 !important;
+					border-color: #E83166 !important;
+					color: #FFFFFF !important;
 				}
 			`}</style>
 			{customCss && (
