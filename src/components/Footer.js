@@ -217,7 +217,7 @@ const Footer = () => {
 												onChange={(e) => setEmail(e.target.value)}
 												required
 												className="w-100 py-3 px-3 footer-email-input"
-												style={{ borderRadius: 0 }}
+										style={{ borderRadius: '100px' }}
 											/>
 										</Col>
 										<Col xs={12} sm={4} className="d-grid">
@@ -229,7 +229,8 @@ const Footer = () => {
 											style={{
 												backgroundColor: ctaButtonColour,
 												borderColor: ctaButtonColour,
-												color: ctaButtonTextColour
+												color: ctaButtonTextColour,
+												borderRadius: '100px'
 											}}
 											>
 												{isSubmitting ? 'Submitting...' : (newsletterCta?.title || 'Subscribe')}

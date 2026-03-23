@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Carousel } from "react-bootstrap";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Testimonial = ({
 	backgroundImage,
@@ -45,8 +46,24 @@ const Testimonial = ({
 					}}
 				/>
 			)}
-			<Container className="testimonial-content-container position-relative">
-				<Row className="justify-content-center">
+			<Container className="testimonial-content-container position-relative">			{customers && customers.length > 1 && activeIndex > 0 && (
+				<button
+					className="testimonial-arrow testimonial-arrow-left position-absolute"
+					aria-label="Previous"
+					onClick={() => setActiveIndex(i => i - 1)}
+				>
+					<FaChevronLeft color="#292D65" size={16} />
+				</button>
+			)}
+			{customers && customers.length > 1 && activeIndex < customers.length - 1 && (
+				<button
+					className="testimonial-arrow testimonial-arrow-right position-absolute"
+					aria-label="Next"
+					onClick={() => setActiveIndex(i => i + 1)}
+				>
+					<FaChevronRight color="#292D65" size={16} />
+				</button>
+			)}				<Row className="justify-content-center">
 					<Col xs={12} lg={8}>
 						{customers && customers.length > 0 && (
 							<div ref={carouselRef} style={{ minHeight: carouselMinHeight > 0 ? `${carouselMinHeight}px` : undefined }}>
@@ -105,6 +122,38 @@ const Testimonial = ({
 			</Container>
 			
 			<style>{`
+				.testimonial-arrow {
+					display: flex;
+					width: 40px;
+					height: 40px;
+					border-radius: 50%;
+					padding: 0;
+					background-color: #ffffff;
+					border: 2px solid #292D65;
+					cursor: pointer;
+					align-items: center;
+					justify-content: center;
+					transition: all 0.2s ease;
+					z-index: 10;
+				}
+				.testimonial-arrow-left {
+					top: 50%;
+					left: 0;
+					transform: translateY(-50%);
+				}
+				.testimonial-arrow-right {
+					top: 50%;
+					right: 0;
+					transform: translateY(-50%);
+				}
+				.testimonial-arrow:hover {
+					background-color: #292D65 !important;
+					border-color: #292D65 !important;
+				}
+				.testimonial-arrow:hover svg {
+					fill: #ffffff !important;
+					color: #ffffff !important;
+				}
 				.testimonial-indicator-dot {
 					width: 10px;
 					height: 10px;

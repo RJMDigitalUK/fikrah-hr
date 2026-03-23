@@ -51,7 +51,7 @@ const CtaBanner = ({
 			)}
 			<Container className="position-relative" style={{ zIndex: 1 }}>
 				<Row className="justify-content-center text-center">
-					<Col xs={12} md={12}>
+					<Col xs={12} md={12} style={{ maxWidth: '800px' }}>
 						<div className="">
 							{heading && (
 								<h2 className="cta-banner-heading" style={{color: headingTextColour}}>{heading}</h2>
