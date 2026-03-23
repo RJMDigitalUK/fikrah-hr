@@ -277,6 +277,12 @@ const CardsSection = ({
 					color: #ffffff;
 					border-color: #ffffff;
 				}
+				.cards-section-secondary-cta-button:hover {
+					color: #E83166 !important;
+				}
+				.cards-section-secondary-cta-button:hover svg {
+					fill: #E83166;
+				}
 			`}</style>
 			{customCss && <style>{`${customCss}`}</style>}
 		</section>
