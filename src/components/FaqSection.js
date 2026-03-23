@@ -79,7 +79,7 @@ const FaqSection = ({
 						<Col xs={12} className="text-center text-xl-start">
 						<div className="faq-header text-xl-start">
 							{subheading && (
-								<h3 className="faq-subheading" style={{ color: subheadingColour }}>{subheading}</h3>
+								<h3 className="faq-subheading-cta" style={{ color: subheadingColour }}>{subheading}</h3>
 							)}
 							{subheadingDescription && (
 								<div className="faq--description mb-5" style={{ color: subheadingDescriptionColour }}><SafeHtmlParser htmlContent={subheadingDescription} /></div>
@@ -101,6 +101,22 @@ const FaqSection = ({
 				)}
 			</Container>
 			<style>{`
+				.faq-subheading-cta {
+					font-size: 34px !important;
+				}
+
+				@media (min-width: 768px) {
+					.faq-subheading-cta	 {
+						font-size: 36px !important;
+					}
+				}
+
+				@media (min-width: 992px) {
+					.faq-subheading-cta {
+						font-size: 40px !important;
+					}
+				}
+
 				.faq-cta-button:hover {
 					background-color: ${ctaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
 					border-color: ${ctaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
