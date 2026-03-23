@@ -164,7 +164,7 @@ themeSettings?.blogCategoryColours?.map(c => [
 										<Card.Body>
 											<div className="d-flex align-items-center gap-2 my-3">
 												<span 
-													className="badge-category"
+													className="badge-category px-2"
 													style={{
 														...(categoryColors?.bg && { backgroundColor: categoryColors.bg }),
 														...(categoryColors?.text && { color: categoryColors.text })
