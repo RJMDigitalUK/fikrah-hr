@@ -106,7 +106,7 @@ const QuizEmailCapture = ({
 										onClick={onBack}
 										className="w-100 py-3"
 										type="button"
-										style={{background: secondaryColour, color: secondaryTextColour}}
+										style={{background: secondaryColour, color: secondaryTextColour, borderColor: secondaryColour}}
 									>
 										Back
 									</Button>
@@ -117,7 +117,7 @@ const QuizEmailCapture = ({
 										type="submit"
 										disabled={isSubmitting}
 										className="w-100 py-3"
-										style={{background: primaryColour, color: primaryTextColour}}
+										style={{background: primaryColour, color: primaryTextColour, borderColor: primaryColour}}
 									>
 										{isSubmitting ? 'Submitting...' : 'See Results'}
 									</Button>
