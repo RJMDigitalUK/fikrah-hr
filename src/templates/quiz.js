@@ -372,7 +372,10 @@ const QuizTemplate = ({ data: { wpQuiz, site } }) => {
 					quizTitle={wpQuiz.title}
 					quizSlug={wpQuiz.slug}
 					score={score}
-					answers={answersArray}				pillarScores={pillarScoresArray}					totalQuestions={totalQuestions}
+					answers={answersArray}
+					pillarScores={pillarScoresArray}
+					scorecardAssessments={quizFields?.scorecardAssessments}
+					totalQuestions={totalQuestions}
 					onSuccess={handleEmailSuccess}
 					onBack={handleEmailBack}
 					primaryColour={quizFields?.primaryColour}

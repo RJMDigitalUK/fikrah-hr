@@ -8,6 +8,7 @@ const QuizEmailCapture = ({
 	score,
 	answers,
 	pillarScores,
+	scorecardAssessments,
 	totalQuestions,
 	onSuccess,
 	onBack,
@@ -30,6 +31,10 @@ const QuizEmailCapture = ({
 
 		setIsSubmitting(true);
 
+		const matchedAssessment = (scorecardAssessments || []).find(
+			a => score >= a.scoreRangeLow && score <= a.scoreRangeHigh
+		);
+
 		try {
 			if (webhookUrl) {
 				const response = await fetch(webhookUrl, {
@@ -43,9 +48,13 @@ const QuizEmailCapture = ({
 						quiz_title: quizTitle,
 						quiz_slug: quizSlug,
 						score,
+						score_name: matchedAssessment?.insightName || null,
 						total_questions: totalQuestions,
 						answers,
-						pillar_scores: pillarScores || []
+						...(pillarScores || []).reduce((acc, p) => {
+							acc[`pillar_${p.pillar.toLowerCase().replace(/\s+/g, '_')}`] = p.score;
+							return acc;
+						}, {})
 					}),
 				});
 
