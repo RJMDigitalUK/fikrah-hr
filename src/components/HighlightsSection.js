@@ -77,7 +77,7 @@ const HighlightsSection = ({
 													src={highlights[0].icon.localFile?.publicURL || highlights[0].icon.sourceUrl}
 													alt={highlights[0].icon?.altText || "Highlight icon"}
 													className="highlight-svg-icon"
-													style={{ width: "80px", height: "80px" }}
+												
 												/>
 											) : getImage(highlights[0].icon?.localFile) ? (
 												<GatsbyImage
@@ -90,7 +90,7 @@ const HighlightsSection = ({
 													src={highlights[0].icon.sourceUrl}
 													alt={highlights[0].icon?.altText || "Highlight icon"}
 													className="highlight-fallback-icon"
-													style={{ width: "80px", height: "80px" }}
+													
 												/>
 											)}
 										</div>
@@ -145,7 +145,7 @@ const HighlightsSection = ({
 														src={highlight.icon.localFile?.publicURL || highlight.icon.sourceUrl}
 														alt={highlight.icon?.altText || "Highlight icon"}
 														className="highlight-svg-icon"
-														style={{ width: "80px", height: "80px" }}
+														
 													/>
 												) : iconImage ? (
 													<GatsbyImage
@@ -158,7 +158,7 @@ const HighlightsSection = ({
 														src={highlight.icon.sourceUrl}
 														alt={highlight.icon?.altText || "Highlight icon"}
 														className="highlight-fallback-icon"
-														style={{ width: "80px", height: "80px" }}
+														
 													/>
 												)}
 											</div>
@@ -239,15 +239,38 @@ const HighlightsSection = ({
 				.highlight-svg-icon,
 				.highlight-image-icon,
 				.highlight-fallback-icon {
-					max-width: 80px;
-					max-height: 80px;
+					width: 40px;
+					height: 40px;
 					object-fit: contain;
 					opacity: 0.8;
 				}
-				
 				.highlight-image-icon {
-					width: 80px !important;
-					height: 80px !important;
+					width: 40px !important;
+					height: 40px !important;
+				}
+				@media (min-width: 768px) {
+					.highlight-svg-icon,
+					.highlight-image-icon,
+					.highlight-fallback-icon {
+						width: 48px;
+						height: 48px;
+					}
+					.highlight-image-icon {
+						width: 48px !important;
+						height: 48px !important;
+					}
+				}
+				@media (min-width: 992px) {
+					.highlight-svg-icon,
+					.highlight-image-icon,
+					.highlight-fallback-icon {
+						width: 49px;
+						height: 49px;
+					}
+					.highlight-image-icon {
+						width: 49px !important;
+						height: 49px !important;
+					}
 				}
 				
 				

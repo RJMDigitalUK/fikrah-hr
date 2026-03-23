@@ -139,7 +139,9 @@ const GuideBenefitsSection = ({
 								</Button>
 							)}
                             {disclaimer && (
-							<SafeHtmlParser className="guide-benefits-disclaimer text-center text-lg-start" htmlContent={disclaimer} style={{color: disclaimerTextColour}} />
+							<div className="text-muted small text-center mt-3 mb-0">
+								<SafeHtmlParser className="" htmlContent={disclaimer} style={{color: disclaimerTextColour}} />
+							</div>
 						)}
 						</Form>
 					</Col>
@@ -197,7 +199,9 @@ const GuideBenefitsSection = ({
 						</Form>
 
 						{disclaimer && (
-							<SafeHtmlParser className="guide-benefits-disclaimer text-center text-lg-start mt-3" htmlContent={disclaimer} style={{color: disclaimerTextColour}} />
+							<div className="text-muted small text-center mt-3 mb-0">
+								<SafeHtmlParser className="" htmlContent={disclaimer} style={{color: disclaimerTextColour}} />
+							</div>
 						)}
 					</Col>
 

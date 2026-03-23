@@ -8,6 +8,7 @@ const BlogCarousel = () => {
 	const scrollRef = useRef(null);
 	const [showLeftArrow, setShowLeftArrow] = useState(false);
 	const [showRightArrow, setShowRightArrow] = useState(true);
+	const [activeIndex, setActiveIndex] = useState(0);
 
 	const data = useStaticQuery(graphql`
 		query BlogCarouselPosts {
@@ -32,12 +33,12 @@ const BlogCarousel = () => {
 							localFile {
 								childImageSharp {
 									gatsbyImageData(
-										width: 800
-										height: 500
-										placeholder: BLURRED
-										formats: [AUTO, WEBP]
-										quality: 80
-									)
+width: 800
+height: 500
+placeholder: BLURRED
+formats: [AUTO, WEBP]
+quality: 80
+)
 								}
 							}
 						}
@@ -57,7 +58,7 @@ const BlogCarousel = () => {
 					blogCategoryColours {
 						category {
 							databaseId
-						}	
+						}
 						backgroundColour
 						textColour
 					}
@@ -71,7 +72,7 @@ const BlogCarousel = () => {
 
 	// Create category color map from repeater
 	const categoryColorMap = new Map(
-		themeSettings?.blogCategoryColours?.map(c => [
+themeSettings?.blogCategoryColours?.map(c => [
 			c.category.databaseId,
 			{ bg: c.backgroundColour, text: c.textColour }
 		]) || []
@@ -84,6 +85,10 @@ const BlogCarousel = () => {
 			const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
 			setShowLeftArrow(scrollLeft > 0);
 			setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
+			const cardEl = scrollRef.current.querySelector('.carousel-card');
+			if (cardEl) {
+				setActiveIndex(Math.round(scrollLeft / (cardEl.offsetWidth + 16)));
+			}
 		}
 	};
 
@@ -102,7 +107,7 @@ const BlogCarousel = () => {
 	};
 
 	return (
-		<section className="blogcarousel-section blog-carousel-section py-5" style={{backgroundColor: themeSettings.blogPageBackgroundColour}}>
+<section className="blogcarousel-section blog-carousel-section py-5" style={{backgroundColor: themeSettings.blogPageBackgroundColour}}>
 			<Container fluid="lg" className="blogcarousel-content-container">
 				{/* <h2 
 					className="blogcarousel-heading mb-4"
@@ -115,6 +120,7 @@ const BlogCarousel = () => {
 					{showLeftArrow && (
 						<button
 							className="carousel-arrow carousel-arrow-left position-absolute"
+							aria-label="Previous"
 							onClick={scrollLeft}
 						>
 							<FaChevronLeft color="#292D65" size={16} />
@@ -137,7 +143,7 @@ const BlogCarousel = () => {
 							const categoryColors = categoryId ? categoryColorMap.get(categoryId) : null;
 							
 							return (
-								<div
+<div
 									key={post.id}
 									className="blogcarousel-card carousel-card"
 								>
@@ -205,11 +211,29 @@ const BlogCarousel = () => {
 					{showRightArrow && (
 						<button
 							className="carousel-arrow carousel-arrow-right position-absolute"
+							aria-label="Next"
 							onClick={scrollRight}
 						>
 							<FaChevronRight color="#292D65" size={16} />
 						</button>
 					)}
+				</div>
+
+				<div className="carousel-dots d-flex justify-content-center gap-2 mt-4">
+					{posts.map((_, i) => (
+<button
+							key={i}
+							aria-label={`Go to slide ${i + 1}`}
+							className={`carousel-dot ${i === activeIndex ? 'active' : ''}`}
+							onClick={() => {
+								const cardEl = scrollRef.current?.querySelector('.carousel-card');
+								if (cardEl && scrollRef.current) {
+									scrollRef.current.scrollTo({ left: i * (cardEl.offsetWidth + 16), behavior: 'smooth' });
+									setActiveIndex(i);
+								}
+							}}
+						/>
+					))}
 				</div>
 
 				<style>{`
@@ -266,7 +290,7 @@ const BlogCarousel = () => {
 						text-overflow: ellipsis;
 					}
 					
-					.badge-category {						
+					.badge-category {acf-export-2026-03-20.json
 						padding: 4px 12px;
 						border-radius: 6px;
 						font-size: 0.875rem;
@@ -275,41 +299,51 @@ const BlogCarousel = () => {
 					}
 					
 					.carousel-arrow {
-							display: none;
-							width: 40px;
-							height: 40px;
-							min-width: 40px;
-							border-radius: 50%;
-							padding: 0;
-							background-color: #ffffff;
-							border: 2px solid #292D65;
-							cursor: pointer;
-							align-items: center;
-							justify-content: center;
-							transition: all 0.2s ease;
-						}
-						.carousel-arrow-left {
-							top: 50%;
-							left: -20px;
-							transform: translateY(-50%);
-							z-index: 10;
-						}
-						.carousel-arrow-right {
-							top: 50%;
-							right: -20px;
-							transform: translateY(-50%);
-							z-index: 10;
-						}
-						@media (min-width: 992px) {
-							.carousel-arrow { display: flex !important; }
-						}
-						.carousel-arrow:hover {
-							background-color: #292D65 !important;
-							border-color: #292D65 !important;
+						display: flex;
+						width: 40px;
+						height: 40px;
+						min-width: 40px;
+						border-radius: 50%;
+						padding: 0;
+						background-color: #ffffff;
+						border: 2px solid #292D65;
+						cursor: pointer;
+						align-items: center;
+						justify-content: center;
+						transition: all 0.2s ease;
+					}
+					.carousel-arrow-left {
+						top: 50%;
+						left: -10px;
+						transform: translateY(-50%);
+						z-index: 10;
+					}
+					.carousel-arrow-right {
+						top: 50%;
+						right: -10px;
+						transform: translateY(-50%);
+						z-index: 10;
+					}
+					.carousel-arrow:hover {
+						background-color: #292D65 !important;
+						border-color: #292D65 !important;
 					}
 					.carousel-arrow:hover svg {
 						fill: #ffffff !important;
 						color: #ffffff !important;
+					}
+					.carousel-dot {
+						width: 8px;
+						height: 8px;
+						border-radius: 50%;
+						border: none;
+						padding: 0;
+						background-color: #c5c9db;
+						cursor: pointer;
+						transition: background-color 0.2s ease;
+					}
+					.carousel-dot.active {
+						background-color: #292D65;
 					}
 				`}</style>
 			</Container>
