@@ -104,7 +104,7 @@ const QuizEmailCapture = ({
 										onClick={onBack}
 										className="w-100 py-3"
 										type="button"
-										style={{background: secondaryColour, color: secondaryTextColour, borderColor: secondaryColour}}
+										style={{background: secondaryColour, color: secondaryTextColour}}
 									>
 										Back
 									</Button>
