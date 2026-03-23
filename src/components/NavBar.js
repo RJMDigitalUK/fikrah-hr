@@ -302,6 +302,12 @@ const NavBar = ({ hideLinks }) => {
 				color: ${navbar?.secondaryCtaTextHoverColour || 'var(--secondary-cta-hover-text-colour)'} !important;
 				border-color: ${navbar?.secondaryCtaHoverColour || 'var(--secondary-cta-hover-colour)'} !important;
 			}
+			@media (min-width: 1200px) {
+				#navbar-test .nav-link:hover {
+					font-family: 'AmpleSoftPro', sans-serif !important;
+					font-weight: 700 !important;
+				}
+			}
 		`}</style>
 		<style>{`${navbar.customCss}`}</style>
 		</>

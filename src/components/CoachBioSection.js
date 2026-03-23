@@ -116,6 +116,16 @@ const CoachBioSection = ({
 			</Container>
 			
 			<style>{`
+				.coach-bio-secondary-cta-button:hover,
+				.coach-bio-secondary-cta-button:focus {
+					color: #E83166 !important;
+				}
+
+				.coach-bio-secondary-cta-button:hover svg,
+				.coach-bio-secondary-cta-button:focus svg {
+					fill: #E83166 !important;
+				}
+
 				.coach-bio-image {
 					margin: 0 !important;
 					padding: 0 !important;
