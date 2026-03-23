@@ -235,6 +235,13 @@ const HighlightsSection = ({
         border-color: ${primaryCtaButtonHoverColour || 'var(--primary-cta-hover-colour)'} !important;
         color: ${primaryCtaTextHoverColour || 'var(--primary-cta-hover-text-colour)'} !important;
     }
+
+				.highlights-item-cta-text:hover {
+					color: #ffffff !important;
+				}
+				.highlights-item-cta-text:hover svg {
+					fill: #ffffff !important;
+				}
 				
 				.highlight-svg-icon,
 				.highlight-image-icon,
