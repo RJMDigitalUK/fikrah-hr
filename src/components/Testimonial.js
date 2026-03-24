@@ -83,7 +83,7 @@ const Testimonial = ({
 												{customer.testimonialFields?.review && (
 													<p
 														className="testimonial-review px-0 px-xl-4 pt-4"
-														style={{ color: quoteTextColour, fontFamily: "'AmpleSoftPro', sans-serif", fontWeight: 500 }}
+														style={{ color: quoteTextColour, fontFamily: "'AmpleSoftPro', sans-serif", fontWeight: 700 }}
 													>
 														{customer.testimonialFields.review}
 													</p>

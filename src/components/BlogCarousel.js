@@ -290,11 +290,11 @@ themeSettings?.blogCategoryColours?.map(c => [
 						text-overflow: ellipsis;
 					}
 					
-					.badge-category {acf-export-2026-03-20.json
+					.badge-category {
 						padding: 4px 12px;
 						border-radius: 6px;
 						font-size: 0.875rem;
-						font-weight: 500;
+						font-weight: 700;
 						text-transform: uppercase;
 					}
 					

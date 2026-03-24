@@ -234,7 +234,7 @@ const CardsSection = ({
 					padding-top: 48px;
 				}
 				.cards-section-card-heading {
-					font-family: 'AmplesoftPro', sans-serif;
+					font-family: 'AmpleSoftPro', sans-serif;
 					font-weight: 700;
 					font-size: 22px;
 				}

@@ -429,10 +429,15 @@ const orbitPositionsForSix = [
 			</Container>
 
 			<style>{`
-				.circles-section-service-heading,
+				
 				.circles-section-service-description,
 				.circles-section-service-description p {
 					color: #292D65;
+					font-weight: 400;
+				}
+
+				.circles-section-service-heading{
+				color: #292D65;
 				}
 
 				a.circles-orbit-item-inner {
